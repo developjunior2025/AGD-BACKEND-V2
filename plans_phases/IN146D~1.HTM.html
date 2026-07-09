@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Infografía — Resumen de tablas propias (depurado) · Marketplace AGD</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.47.0/tabler-icons.min.css">
+<style>
+  :root{
+    --navy:#0b2545;
+    --navy2:#123a6b;
+    --accent:#e0672a;
+    --accent-bg:#fff0e7;
+    --ink:#16233a;
+    --sub:#5b6b85;
+    --line:#e3e8f0;
+    --bg:#f4f6fb;
+    --card:#ffffff;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{
+    font-family:'Inter',sans-serif;
+    background:var(--bg);
+    color:var(--ink);
+    padding:40px 0 60px;
+  }
+  .sheet{
+    max-width:980px;
+    margin:0 auto;
+    background:var(--card);
+    border-radius:20px;
+    overflow:hidden;
+    box-shadow:0 20px 60px rgba(11,37,69,0.12);
+  }
+  .hero{
+    background:linear-gradient(135deg,var(--navy) 0%,var(--navy2) 55%,#1c5aa8 100%);
+    color:#fff;
+    padding:44px 48px 38px;
+    position:relative;
+  }
+  .hero::after{
+    content:"";
+    position:absolute;
+    right:-60px; top:-60px;
+    width:260px; height:260px;
+    border-radius:50%;
+    background:rgba(255,255,255,0.06);
+  }
+  .hero .eyebrow{
+    font-size:12px;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    color:#a9c4f0;
+    font-weight:600;
+    margin-bottom:10px;
+  }
+  .hero h1{
+    font-size:27px;
+    font-weight:800;
+    line-height:1.2;
+    max-width:700px;
+  }
+  .hero p{
+    margin-top:12px;
+    font-size:14.5px;
+    color:#c9d9f4;
+    max-width:660px;
+    line-height:1.6;
+  }
+  .hero .badges{
+    display:flex; gap:10px; margin-top:22px; flex-wrap:wrap;
+  }
+  .hero .badges span{
+    background:rgba(255,255,255,0.12);
+    border:1px solid rgba(255,255,255,0.25);
+    padding:6px 14px;
+    border-radius:99px;
+    font-size:12px;
+    font-weight:500;
+  }
+
+  .grid{
+    padding:32px 48px 30px;
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:16px;
+  }
+  .cat{
+    background:var(--accent-bg);
+    border:1px solid #fbdcc6;
+    border-radius:14px;
+    padding:18px 18px 16px;
+  }
+  .cat-head{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom:12px;
+  }
+  .cat-head i{
+    font-size:18px;
+    color:#a8451a;
+    background:#fff;
+    width:34px;height:34px;
+    border-radius:10px;
+    display:flex;align-items:center;justify-content:center;
+    flex-shrink:0;
+  }
+  .cat-head h3{
+    font-size:13.5px;
+    font-weight:700;
+    color:#a8451a;
+  }
+  .cat-head .count{
+    margin-left:auto;
+    font-size:11px;
+    color:#a8451a;
+    opacity:0.75;
+    font-weight:500;
+  }
+  .pill-list{ display:flex; flex-wrap:wrap; gap:6px; }
+  .pill{
+    font-size:11px;
+    font-family:'SFMono-Regular',Consolas,monospace;
+    padding:5px 9px;
+    border-radius:8px;
+    background:#fff;
+    border:1px solid rgba(0,0,0,0.06);
+    color:#a8451a;
+    font-weight:500;
+  }
+
+  .footer{
+    padding:22px 48px 30px;
+    font-size:11.5px;
+    color:var(--sub);
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    border-top:1px solid var(--line);
+    flex-wrap:wrap;
+    gap:8px;
+  }
+
+  @media (max-width:700px){
+    .grid{ grid-template-columns:1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="sheet">
+
+  <div class="hero">
+    <div class="eyebrow">Mapa del sitio · Modelo de datos consolidado (depurado)</div>
+    <h1>Resumen de tablas propias — mínimas y necesarias del Marketplace + AGD</h1>
+    <p>Versión depurada tras comparar las 176 tablas propuestas contra el modelo nativo de Odoo: quedan 78 tablas propias sin equivalente en Odoo, agrupadas en 12 dominios funcionales. Las 98 restantes se resuelven usando tablas Odoo nativas o extendiéndolas con campos propios (ver <code>listado_tablas_odoo_vs_agd_marketplace.xlsx</code>).</p>
+    <div class="badges">
+      <span><i class="ti ti-database-cog"></i> 78 tablas propias necesarias</span>
+      <span><i class="ti ti-category"></i> 12 dominios funcionales</span>
+    </div>
+  </div>
+
+  <div class="grid">
+
+    <div class="cat">
+      <div class="cat-head"><i class="ti ti-shield-lock"></i><h3>Núcleo de usuarios y seguridad</h3><span class="count">4</span></div>
+      <div class="pill-list">
+        <span class="pill">agd_policy_acceptance</span>
+        <span class="pill">agd_user_enablement_request</span>
+        <span class="pill">agd_user_enablement_step</span>
+        <span class="pill">agd_user_training_acceptance</span>
+      </div>
+    </div>
+
+    <div class="cat">
+      <div class="cat-head"><i class="ti ti-building-store"></i><h3>HOME / Portal público</h3><span class="count">3</span></div>
+      <div class="pill-list">
+        <span class="pill">agd_legal_policy</span>
+        <span class="pill">agd_legal_policy_version</span>
+        <span class="pill">agd_portal_version</span>
+      </div>
+    </div>
+
+    <div class="cat">
+      <div class="cat-head"><i class="ti ti-shopping-bag"></i><h3>Catálogo y servicios</h3><span class="count">6</span></div>
+      <div class="pill-list">
+        <span class="pill">agd_service_coverage</span>
+        <span class="pill">agd_service_evidence_type</span>
+        <span class="pill">agd_service_publication</span>
+        <span class="pill">agd_service_publication_version</span>
+        <span class="pill">agd_service_requirement</span>
+        <span class="pill">agd_service_sla</span>
+      </div>
+    </div>
+
+    <div class="cat">
+      <div class="cat-head"><i class="ti ti-file-invoice"></i><h3>Cotización y contratación</h3><span class="count">5</span></div>
+      <div class="pill-list">
+        <span class="pill">agd_quote_comparison</span>
+        <span class="pill">agd_quote_request</span>
+        <span class="pill">agd_quote_request_line</span>
+        <span class="pill">agd_service_cart</span>
+        <span class="pill">agd_service_cart_item</span>
+      </div>
+    </div>
+
+    <div class="cat">
+      <div class="cat-head"><i class="ti ti-folder"></i><h3>Expediente y documentos</h3><span class="count">8</span></div>
+      <div class="pill-list">
+        <span class="pill">agd_case</span>
+        <span class="pill">agd_case_party</span>
+        <span class="pill">agd_case_semaphore</span>
+        <span class="pill">agd_document_checklist</span>
+        <span class="pill">agd_document_profile_matrix</span>
+        <span class="pill">agd_document_relation</span>
+        <span class="pill">agd_document_requirement</span>
+        <span class="pill">agd_document_status</span>
+      </div>
+    </div>
+
+    <div class="cat">
+      <div class="cat-head"><i class="ti ti-table"></i><h3>Gobernanza y matriz</h3><span class="count">8</span></div>
+      <div class="pill-list">
+        <span class="pill">agd_escalation_matrix</span>
+        <span class="pill">agd_governance_matrix</span>
+        <span class="pill">agd_governance_matrix_version</span>
+        <span class="pill">agd_governance_workflow</span>
+        <span class="pill">agd_governance_workflow_instance</span>
+        <span class="pill">agd_process_raci_matrix</span>
+        <span class="pill">agd_raci_assignment</span>
+        <span class="pill">agd_segregation_rule</span>
+      </div>
+    </div>
+
+    <div class="cat">
+      <div class="cat-head"><i class="ti ti-refresh"></i><h3>SIDUNEA Mirror</h3><span class="count">8</span></div>
+      <div class="pill-list">
+        <span class="pill">agd_sidunea_customs_regime</span>
+        <span class="pill">agd_sidunea_dua</span>
+        <span class="pill">agd_sidunea_dua_item</span>
+        <span class="pill">agd_sidunea_mirror_record</span>
+        <span class="pill">agd_sidunea_modai_inspection</span>
+        <span class="pill">agd_sidunea_modcar_manifest</span>
+        <span class="pill">agd_sidunea_modshd_exit_pass</span>
+        <span class="pill">agd_sidunea_tax_simulation</span>
+      </div>
+    </div>
+
+    <div class="cat">
+      <div class="cat-head"><i class="ti ti-id-badge"></i><h3>Agente de aduanas</h3><span class="count">5</span></div>
+      <div class="pill-list">
+        <span class="pill">agd_customs_declaration</span>
+        <span class="pill">agd_customs_declaration_item</span>
+        <span class="pill">agd_customs_license</span>
+        <span class="pill">agd_customs_regime_assignment</span>
+        <span class="pill">agd_customs_tax_liquidation</span>
+      </div>
+    </div>
+
+    <div class="cat">
+      <div class="cat-head"><i class="ti ti-building-warehouse"></i><h3>WMS AGD</h3><span class="count">9</span></div>
+      <div class="pill-list">
+        <span class="pill">agd_discrepancy_item</span>
+        <span class="pill">agd_discrepancy_matrix</span>
+        <span class="pill">agd_wms_cargo_handling_task</span>
+        <span class="pill">agd_wms_consolidation_order</span>
+        <span class="pill">agd_wms_custody_record</span>
+        <span class="pill">agd_wms_deconsolidation_order</span>
+        <span class="pill">agd_wms_receipt_discrepancy</span>
+        <span class="pill">agd_wms_storage_period</span>
+        <span class="pill">agd_wms_weighing_ticket</span>
+      </div>
+    </div>
+
+    <div class="cat">
+      <div class="cat-head"><i class="ti ti-truck-delivery"></i><h3>TOS y transporte</h3><span class="count">13</span></div>
+      <div class="pill-list">
+        <span class="pill">agd_tos_appointment_line</span>
+        <span class="pill">agd_tos_authorization</span>
+        <span class="pill">agd_tos_driver_validation</span>
+        <span class="pill">agd_tos_gate</span>
+        <span class="pill">agd_tos_gate_assignment</span>
+        <span class="pill">agd_tos_gate_slot</span>
+        <span class="pill">agd_tos_queue</span>
+        <span class="pill">agd_tos_turn</span>
+        <span class="pill">agd_transport_order</span>
+        <span class="pill">agd_transport_order_line</span>
+        <span class="pill">agd_transport_pod</span>
+        <span class="pill">agd_transport_route</span>
+        <span class="pill">agd_transport_trip</span>
+      </div>
+    </div>
+
+    <div class="cat">
+      <div class="cat-head"><i class="ti ti-chart-bar"></i><h3>Reportes y estadísticas</h3><span class="count">5</span></div>
+      <div class="pill-list">
+        <span class="pill">agd_analytics_event</span>
+        <span class="pill">agd_dashboard_profile_layout</span>
+        <span class="pill">agd_kpi_definition</span>
+        <span class="pill">agd_kpi_measurement</span>
+        <span class="pill">agd_report_snapshot</span>
+      </div>
+    </div>
+
+    <div class="cat">
+      <div class="cat-head"><i class="ti ti-settings"></i><h3>Configuración</h3><span class="count">4</span></div>
+      <div class="pill-list">
+        <span class="pill">agd_deadline_rule</span>
+        <span class="pill">agd_external_integration_reference</span>
+        <span class="pill">agd_sla_rule</span>
+        <span class="pill">agd_tariff_rule</span>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer">
+    <span>Marketplace AGD · Mapa del sitio — Resumen de tablas propias (depurado)</span>
+    <span>78 tablas necesarias · 12 dominios funcionales</span>
+  </div>
+
+</div>
+</body>
+</html>

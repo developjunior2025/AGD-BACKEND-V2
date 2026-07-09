@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head>
+<meta charset="utf-8"/>
+<title>Infografía — Agente de aduanas · Marketplace AGD</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.47.0/tabler-icons.min.css" rel="stylesheet"/>
+<style>
+  :root{
+    --navy:#0b2545;
+    --navy2:#123a6b;
+    --accent-odoo:#2f6fed;
+    --accent-odoo-bg:#eaf1ff;
+    --accent-agd:#e0672a;
+    --accent-agd-bg:#fff0e7;
+    --ink:#16233a;
+    --sub:#5b6b85;
+    --line:#e3e8f0;
+    --bg:#f4f6fb;
+    --card:#ffffff;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{
+    font-family:'Inter',sans-serif;
+    background:var(--bg);
+    color:var(--ink);
+    padding:40px 0 60px;
+  }
+  .sheet{
+    max-width:980px;
+    margin:0 auto;
+    background:var(--card);
+    border-radius:20px;
+    overflow:hidden;
+    box-shadow:0 20px 60px rgba(11,37,69,0.12);
+  }
+  .hero{
+    background:linear-gradient(135deg,var(--navy) 0%,var(--navy2) 55%,#1c5aa8 100%);
+    color:#fff;
+    padding:44px 48px 38px;
+    position:relative;
+  }
+  .hero::after{
+    content:"";
+    position:absolute;
+    right:-60px; top:-60px;
+    width:260px; height:260px;
+    border-radius:50%;
+    background:rgba(255,255,255,0.06);
+  }
+  .hero .eyebrow{
+    font-size:12px;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    color:#a9c4f0;
+    font-weight:600;
+    margin-bottom:10px;
+  }
+  .hero h1{
+    font-size:29px;
+    font-weight:800;
+    line-height:1.18;
+    max-width:680px;
+  }
+  .hero p{
+    margin-top:12px;
+    font-size:14.5px;
+    color:#c9d9f4;
+    max-width:640px;
+    line-height:1.6;
+  }
+  .hero .badges{
+    display:flex; gap:10px; margin-top:22px; flex-wrap:wrap;
+  }
+  .hero .badges span{
+    background:rgba(255,255,255,0.12);
+    border:1px solid rgba(255,255,255,0.25);
+    padding:6px 14px;
+    border-radius:99px;
+    font-size:12px;
+    font-weight:500;
+  }
+
+  .section{
+    padding:36px 48px;
+    border-bottom:1px solid var(--line);
+  }
+  .section:last-child{ border-bottom:none; }
+  .section-head{
+    display:flex;
+    align-items:baseline;
+    gap:10px;
+    margin-bottom:20px;
+  }
+  .section-head .num{
+    font-size:12px;
+    font-weight:700;
+    color:#fff;
+    background:var(--navy);
+    width:26px;height:26px;
+    border-radius:8px;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .section-head h2{
+    font-size:19px;
+    font-weight:700;
+    color:var(--ink);
+  }
+  .section-head .hint{
+    font-size:12.5px;
+    color:var(--sub);
+    margin-left:auto;
+  }
+
+  .feat-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:12px;
+  }
+  .feat-card{
+    background:#f9fafc;
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:15px 16px;
+    display:flex;
+    gap:12px;
+    align-items:flex-start;
+  }
+  .feat-card i{
+    font-size:19px;
+    color:var(--accent-odoo);
+    background:var(--accent-odoo-bg);
+    width:36px;height:36px;
+    border-radius:10px;
+    display:flex;align-items:center;justify-content:center;
+    flex-shrink:0;
+  }
+  .feat-card h3{
+    font-size:13px;
+    font-weight:600;
+    margin-bottom:3px;
+  }
+  .feat-card p{
+    font-size:11.5px;
+    color:var(--sub);
+    line-height:1.5;
+  }
+  .feat-card.span2{ grid-column:span 2; }
+
+  .legend{
+    display:flex; gap:22px; margin-bottom:20px; font-size:12.5px; color:var(--sub);
+  }
+  .legend span{ display:flex; align-items:center; gap:7px; }
+  .dot{ width:10px;height:10px;border-radius:50%; }
+  .dot.odoo{ background:var(--accent-odoo); }
+  .dot.agd{ background:var(--accent-agd); }
+
+  .compare{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:20px;
+  }
+  .col{
+    border-radius:14px;
+    padding:20px 20px 18px;
+    border:1px solid var(--line);
+  }
+  .col.odoo{ background:var(--accent-odoo-bg); border-color:#d4e3fc; }
+  .col.agd{ background:var(--accent-agd-bg); border-color:#fbdcc6; }
+  .col h4{
+    font-size:13px;
+    font-weight:700;
+    margin-bottom:12px;
+    display:flex; align-items:center; gap:8px;
+  }
+  .col.odoo h4{ color:#1d4fa8; }
+  .col.agd h4{ color:#a8451a; }
+  .pill-list{ display:flex; flex-wrap:wrap; gap:6px; }
+  .pill{
+    font-size:12px;
+    padding:5px 10px;
+    border-radius:8px;
+    background:#fff;
+    border:1px solid rgba(0,0,0,0.06);
+    font-weight:500;
+  }
+  .pill.mono{ font-family:'SFMono-Regular',Consolas,monospace; font-size:11px; }
+  .col.odoo .pill{ color:#1d4fa8; }
+  .col.agd .pill{ color:#a8451a; }
+
+  .footer{
+    padding:22px 48px 30px;
+    font-size:11.5px;
+    color:var(--sub);
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+  }
+
+  @media (max-width:800px){
+    .feat-grid{ grid-template-columns:1fr; }
+    .feat-card.span2{ grid-column:span 1; }
+    .compare{ grid-template-columns:1fr; }
+  }
+
+.pill.ext{border-color:#b9c9ef}
+.pill.ext sup{color:var(--accent-odoo);margin-left:2px}
+.dropped-block{margin-top:16px;padding-top:14px;border-top:1px dashed var(--line)}
+.dropped-title{font-size:11.5px;color:var(--sub);margin-bottom:8px}
+.pill.dropped{font-size:11px;font-family:'SFMono-Regular',Consolas,monospace;padding:4px 9px;border-radius:8px;background:#fff;border:1px dashed var(--line);color:var(--sub);margin:3px 4px 0 0;display:inline-flex}
+.pill.dropped s{opacity:0.65}
+.ext-note{font-size:11px;color:var(--sub);margin-top:10px}
+</style>
+</head>
+<body>
+<div class="sheet">
+<div class="hero">
+<div class="eyebrow">Mapa del sitio · Perfil 4.2</div>
+<h1>Agente de aduanas — usuario del módulo de gobernanza SIDUNEA</h1>
+<p>Perfil profesional aduanero: publica servicios, cotiza, y gestiona el expediente aduanero digital bajo una gobernanza SIDUNEA de espejo (mirror), sin integración electrónica directa con el sistema oficial.</p>
+<div class="badges">
+<span><i class="ti ti-id-badge"></i> Perfil profesional</span>
+<span><i class="ti ti-file-invoice"></i> Servicios aduanales</span>
+<span><i class="ti ti-shield-lock"></i> Gobernanza SIDUNEA</span>
+</div>
+</div>
+<div class="section">
+<div class="section-head">
+<div class="num">1</div>
+<h2>Funcionalidades del perfil</h2>
+<div class="hint">9 capacidades aduaneras</div>
+</div>
+<div class="feat-grid">
+<div class="feat-card">
+<i class="ti ti-layout-dashboard"></i>
+<div><h3>Dashboard principal</h3><p>Vista general de su gestión.</p></div>
+</div>
+<div class="feat-card">
+<i class="ti ti-id-badge"></i>
+<div><h3>Perfil profesional</h3><p>Gestión de datos y licencia.</p></div>
+</div>
+<div class="feat-card">
+<i class="ti ti-speakerphone"></i>
+<div><h3>Publicación de servicios</h3><p>Servicios aduanales ofrecidos.</p></div>
+</div>
+<div class="feat-card">
+<i class="ti ti-file-invoice"></i>
+<div><h3>Cotizaciones</h3><p>Atención comercial a clientes.</p></div>
+</div>
+<div class="feat-card">
+<i class="ti ti-shield-lock"></i>
+<div><h3>Gobernanza SIDUNEA</h3><p>Espejo, sin integración electrónica.</p></div>
+</div>
+<div class="feat-card">
+<i class="ti ti-chart-bar"></i>
+<div><h3>Consulta y reportes</h3><p>Seguimiento de su operación.</p></div>
+</div>
+<div class="feat-card">
+<i class="ti ti-clipboard-list"></i>
+<div><h3>Gobernanza transversal</h3><p>Reglas comunes a todo el perfil.</p></div>
+</div>
+<div class="feat-card">
+<i class="ti ti-file-text"></i>
+<div><h3>Documentos maestros</h3><p>Documentación aduanera de referencia.</p></div>
+</div>
+<div class="feat-card span2">
+<i class="ti ti-table"></i>
+<div><h3>Matriz de gobernanza aduanera</h3><p>Vista consolidada de permisos y responsables.</p></div>
+</div>
+</div>
+</div>
+<div class="section">
+<div class="section-head">
+<div class="num">2</div>
+<h2>Módulos</h2>
+</div>
+<div class="legend">
+<span><span class="dot odoo"></span>Odoo, base referencial</span>
+<span><span class="dot agd"></span>Desarrollo propio AGD</span>
+</div>
+<div class="compare">
+<div class="col odoo">
+<h4><i class="ti ti-package"></i>Módulos Odoo referenciales</h4>
+<div class="pill-list">
+<span class="pill">Contacts / Users / Companies</span>
+<span class="pill">Products / Services</span>
+<span class="pill">Sales Quotations / Sales Orders</span>
+<span class="pill">Accounting / Invoicing</span>
+<span class="pill">Documents / Attachments</span>
+<span class="pill">Mail / Activities</span>
+<span class="pill">Access Rights</span>
+<span class="pill">Reporting</span>
+</div>
+</div>
+<div class="col agd">
+<h4><i class="ti ti-stack-2"></i>Módulos propios AGD</h4>
+<div class="pill-list">
+<span class="pill">Servicios aduanales publicados</span>
+<span class="pill">Habilitación profesional</span>
+<span class="pill">DUA y simulación MODBRK</span>
+<span class="pill">Liquidación simulada de tributos</span>
+<span class="pill">Regímenes aduaneros</span>
+<span class="pill">Expediente aduanero digital</span>
+<span class="pill">MODAI y MODSHD</span>
+<span class="pill">SIDUNEA Mirror</span>
+<span class="pill">Matriz RACI aduanera</span>
+</div>
+</div>
+</div>
+</div>
+<div class="section">
+<div class="section-head">
+<div class="num">3</div>
+<h2>Modelo de datos</h2>
+<div class="hint">Tablas referenciales y propias</div>
+</div>
+<div class="compare">
+<div class="col odoo">
+<h4><i class="ti ti-database"></i>Tablas Odoo referenciales</h4>
+<div class="pill-list">
+<span class="pill mono">res_users</span>
+<span class="pill mono ext" title="Ampliada con campos propios AGD">res_partner<sup>†</sup></span>
+<span class="pill mono">res_company</span>
+<span class="pill mono">product_template</span>
+<span class="pill mono">product_product</span>
+<span class="pill mono">product_category</span>
+<span class="pill mono">sale_order</span>
+<span class="pill mono">sale_order_line</span>
+<span class="pill mono">account_move</span>
+<span class="pill mono">account_move_line</span>
+<span class="pill mono">account_payment</span>
+<span class="pill mono">ir_attachment</span>
+<span class="pill mono">mail_message</span>
+<span class="pill mono ext" title="Ampliada con campos propios AGD">mail_activity<sup>†</sup></span>
+<span class="pill mono">res_groups</span>
+<span class="pill mono">ir_model_access</span>
+<span class="pill mono ext" title="Ampliada con campos propios AGD">ir_rule<sup>†</sup></span>
+<span class="pill mono">documents_document</span>
+</div>
+</div>
+<div class="col agd">
+<h4><i class="ti ti-database-cog"></i>Tablas propias AGD (necesarias)</h4>
+<div class="pill-list">
+<span class="pill mono">agd_customs_license</span>
+<span class="pill mono">agd_customs_declaration</span>
+<span class="pill mono">agd_customs_declaration_item</span>
+<span class="pill mono">agd_customs_regime_assignment</span>
+<span class="pill mono">agd_customs_tax_liquidation</span>
+<span class="pill mono">agd_sidunea_dua</span>
+<span class="pill mono">agd_sidunea_dua_item</span>
+<span class="pill mono">agd_sidunea_modai_inspection</span>
+<span class="pill mono">agd_sidunea_modshd_exit_pass</span>
+<span class="pill mono">agd_sidunea_tax_simulation</span>
+<span class="pill mono">agd_sidunea_customs_regime</span>
+<span class="pill mono">agd_sidunea_mirror_record</span>
+<span class="pill mono">agd_case</span>
+<span class="pill mono">agd_governance_workflow_instance</span>
+<span class="pill mono">agd_process_raci_matrix</span>
+<span class="pill mono">agd_raci_assignment</span>
+</div>
+</div>
+</div><p class="ext-note">† Tabla Odoo ampliada con campos propios del perfil (no requiere tabla nueva).</p><div class="dropped-block"><p class="dropped-title">11 tabla(s) propuesta(s) inicialmente, descartadas tras comparar con Odoo:</p><div class="pill-list"><span class="pill dropped"><s>agd_customs_agent_profile</s> → res_partner</span>
+<span class="pill dropped"><s>agd_customs_service</s> → product_template</span>
+<span class="pill dropped"><s>agd_customs_service_publication</s> duplica agd_service_publication</span>
+<span class="pill dropped"><s>agd_customs_dossier</s> duplica agd_case</span>
+<span class="pill dropped"><s>agd_customs_document_validation</s> duplica agd_document_status</span>
+<span class="pill dropped"><s>agd_customs_observation</s> → mail_message</span>
+<span class="pill dropped"><s>agd_customs_action_history</s> → mail_message</span>
+<span class="pill dropped"><s>agd_document</s> → documents_document</span>
+<span class="pill dropped"><s>agd_document_version</s> → documents_document</span>
+<span class="pill dropped"><s>agd_governance_approval</s> → mail_activity</span>
+<span class="pill dropped"><s>agd_document_permission_matrix</s> → ir_rule</span></div></div>
+</div>
+<div class="footer">
+<span>Marketplace AGD · Mapa del sitio — Sección 4.2</span>
+<span>Perfil: agente de aduanas</span>
+</div>
+</div>
+</body>
+</html>

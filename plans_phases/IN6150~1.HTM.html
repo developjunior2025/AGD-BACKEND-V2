@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Infografía — Footer · Marketplace AGD</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.47.0/tabler-icons.min.css">
+<style>
+  :root{
+    --navy:#0b2545;
+    --navy2:#123a6b;
+    --accent:#2f6fed;
+    --accent-bg:#eaf1ff;
+    --ink:#16233a;
+    --sub:#5b6b85;
+    --line:#e3e8f0;
+    --bg:#f4f6fb;
+    --card:#ffffff;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{
+    font-family:'Inter',sans-serif;
+    background:var(--bg);
+    color:var(--ink);
+    padding:40px 0 60px;
+  }
+  .sheet{
+    max-width:920px;
+    margin:0 auto;
+    background:var(--card);
+    border-radius:20px;
+    overflow:hidden;
+    box-shadow:0 20px 60px rgba(11,37,69,0.12);
+  }
+  .hero{
+    background:linear-gradient(135deg,var(--navy) 0%,var(--navy2) 55%,#1c5aa8 100%);
+    color:#fff;
+    padding:44px 48px 38px;
+    position:relative;
+  }
+  .hero::after{
+    content:"";
+    position:absolute;
+    right:-60px; top:-60px;
+    width:260px; height:260px;
+    border-radius:50%;
+    background:rgba(255,255,255,0.06);
+  }
+  .hero .eyebrow{
+    font-size:12px;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    color:#a9c4f0;
+    font-weight:600;
+    margin-bottom:10px;
+  }
+  .hero h1{
+    font-size:30px;
+    font-weight:800;
+    line-height:1.15;
+    max-width:600px;
+  }
+  .hero p{
+    margin-top:12px;
+    font-size:14.5px;
+    color:#c9d9f4;
+    max-width:580px;
+    line-height:1.6;
+  }
+  .hero .badges{
+    display:flex; gap:10px; margin-top:22px; flex-wrap:wrap;
+  }
+  .hero .badges span{
+    background:rgba(255,255,255,0.12);
+    border:1px solid rgba(255,255,255,0.25);
+    padding:6px 14px;
+    border-radius:99px;
+    font-size:12px;
+    font-weight:500;
+  }
+
+  .section{
+    padding:36px 48px 30px;
+  }
+  .section-head{
+    display:flex;
+    align-items:baseline;
+    gap:10px;
+    margin-bottom:20px;
+  }
+  .section-head h2{
+    font-size:19px;
+    font-weight:700;
+    color:var(--ink);
+  }
+  .section-head .hint{
+    font-size:12.5px;
+    color:var(--sub);
+    margin-left:auto;
+  }
+
+  .feat-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:12px;
+  }
+  .feat-card{
+    background:#f9fafc;
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:16px 14px;
+    display:flex;
+    flex-direction:column;
+    gap:9px;
+  }
+  .feat-card i{
+    font-size:20px;
+    color:var(--accent);
+    background:var(--accent-bg);
+    width:38px;height:38px;
+    border-radius:11px;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .feat-card h3{
+    font-size:13px;
+    font-weight:600;
+    line-height:1.3;
+  }
+  .feat-card.span2{ grid-column:span 2; }
+
+  .footer{
+    padding:22px 48px 30px;
+    font-size:11.5px;
+    color:var(--sub);
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    border-top:1px solid var(--line);
+  }
+
+  @media (max-width:700px){
+    .feat-grid{ grid-template-columns:repeat(2,1fr); }
+    .feat-card.span2{ grid-column:span 1; }
+  }
+</style>
+</head>
+<body>
+<div class="sheet">
+
+  <div class="hero">
+    <div class="eyebrow">Mapa del sitio · Componente global</div>
+    <h1>8. Footer</h1>
+    <p>Pie de página presente en todo el portal: marco legal, canales de ayuda y contacto, navegación de respaldo y control de versión del sitio.</p>
+    <div class="badges">
+      <span><i class="ti ti-shield-lock"></i> Marco legal</span>
+      <span><i class="ti ti-headset"></i> Ayuda y contacto</span>
+      <span><i class="ti ti-history"></i> Versionado</span>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-head">
+      <h2>Enlaces del footer</h2>
+      <div class="hint">11 elementos</div>
+    </div>
+    <div class="feat-grid">
+      <div class="feat-card">
+        <i class="ti ti-file-text"></i>
+        <h3>Términos y condiciones</h3>
+      </div>
+      <div class="feat-card">
+        <i class="ti ti-shield-lock"></i>
+        <h3>Política de privacidad</h3>
+      </div>
+      <div class="feat-card">
+        <i class="ti ti-cookie"></i>
+        <h3>Política de cookies</h3>
+      </div>
+      <div class="feat-card">
+        <i class="ti ti-lock"></i>
+        <h3>Política de seguridad</h3>
+      </div>
+      <div class="feat-card">
+        <i class="ti ti-help-circle"></i>
+        <h3>Ayuda</h3>
+      </div>
+      <div class="feat-card">
+        <i class="ti ti-headset"></i>
+        <h3>Centro de soporte</h3>
+      </div>
+      <div class="feat-card">
+        <i class="ti ti-map-2"></i>
+        <h3>Sitemap</h3>
+      </div>
+      <div class="feat-card">
+        <i class="ti ti-mail"></i>
+        <h3>Contacto</h3>
+      </div>
+      <div class="feat-card">
+        <i class="ti ti-share"></i>
+        <h3>Redes sociales</h3>
+      </div>
+      <div class="feat-card">
+        <i class="ti ti-news"></i>
+        <h3>Newsletter</h3>
+      </div>
+      <div class="feat-card span2">
+        <i class="ti ti-history"></i>
+        <h3>Versionado y fecha de actualización del portal</h3>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <span>Marketplace AGD · Mapa del sitio — Sección 8</span>
+    <span>Componente: footer global</span>
+  </div>
+
+</div>
+</body>
+</html>

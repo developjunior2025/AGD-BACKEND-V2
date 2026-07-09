@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Infografía — Matriz de acceso por perfil · Marketplace AGD</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.47.0/tabler-icons.min.css">
+<style>
+  :root{
+    --navy:#0b2545;
+    --navy2:#123a6b;
+    --ink:#16233a;
+    --sub:#5b6b85;
+    --line:#e3e8f0;
+    --bg:#f4f6fb;
+    --card:#ffffff;
+    --yes-bg:#e6f5ec;
+    --yes-fg:#1f7a4d;
+    --no-bg:#f1f2f5;
+    --no-fg:#8a92a3;
+    --qual-bg:#eaf1ff;
+    --qual-fg:#1d4fa8;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{
+    font-family:'Inter',sans-serif;
+    background:var(--bg);
+    color:var(--ink);
+    padding:40px 0 60px;
+  }
+  .sheet{
+    max-width:1020px;
+    margin:0 auto;
+    background:var(--card);
+    border-radius:20px;
+    overflow:hidden;
+    box-shadow:0 20px 60px rgba(11,37,69,0.12);
+  }
+  .hero{
+    background:linear-gradient(135deg,var(--navy) 0%,var(--navy2) 55%,#1c5aa8 100%);
+    color:#fff;
+    padding:44px 48px 38px;
+    position:relative;
+  }
+  .hero::after{
+    content:"";
+    position:absolute;
+    right:-60px; top:-60px;
+    width:260px; height:260px;
+    border-radius:50%;
+    background:rgba(255,255,255,0.06);
+  }
+  .hero .eyebrow{
+    font-size:12px;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    color:#a9c4f0;
+    font-weight:600;
+    margin-bottom:10px;
+  }
+  .hero h1{
+    font-size:29px;
+    font-weight:800;
+    line-height:1.18;
+    max-width:660px;
+  }
+  .hero p{
+    margin-top:12px;
+    font-size:14.5px;
+    color:#c9d9f4;
+    max-width:640px;
+    line-height:1.6;
+  }
+
+  .legend{
+    display:flex; gap:20px; flex-wrap:wrap; margin:26px 48px 0; font-size:12px; color:var(--sub);
+  }
+  .legend span{ display:flex; align-items:center; gap:7px; }
+  .swatch{ width:14px;height:14px;border-radius:4px; }
+  .swatch.yes{ background:var(--yes-bg); border:1px solid #bfe3cd; }
+  .swatch.qual{ background:var(--qual-bg); border:1px solid #d4e3fc; }
+  .swatch.no{ background:var(--no-bg); border:1px solid var(--line); }
+
+  .table-wrap{
+    padding:22px 48px 30px;
+    overflow-x:auto;
+  }
+  table{
+    width:100%;
+    border-collapse:separate;
+    border-spacing:0;
+    font-size:12.5px;
+    min-width:880px;
+  }
+  th, td{
+    padding:10px 12px;
+    text-align:left;
+    border-bottom:1px solid var(--line);
+  }
+  thead th{
+    background:var(--navy);
+    color:#fff;
+    font-weight:600;
+    font-size:12px;
+  }
+  thead th:first-child{ border-top-left-radius:10px; }
+  thead th:last-child{ border-top-right-radius:10px; }
+  tbody tr:nth-child(even){ background:#fafbfd; }
+  tbody td:first-child{
+    font-weight:600;
+    color:var(--ink);
+    white-space:nowrap;
+  }
+  .pill{
+    display:inline-flex;
+    align-items:center;
+    gap:5px;
+    font-size:11.5px;
+    font-weight:500;
+    padding:4px 9px;
+    border-radius:7px;
+    white-space:nowrap;
+  }
+  .pill.yes{ background:var(--yes-bg); color:var(--yes-fg); }
+  .pill.qual{ background:var(--qual-bg); color:var(--qual-fg); }
+  .pill.no{ background:var(--no-bg); color:var(--no-fg); }
+  .pill i{ font-size:12px; }
+
+  .footer{
+    padding:22px 48px 30px;
+    font-size:11.5px;
+    color:var(--sub);
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    border-top:1px solid var(--line);
+    flex-wrap:wrap;
+    gap:8px;
+  }
+</style>
+</head>
+<body>
+<div class="sheet">
+
+  <div class="hero">
+    <div class="eyebrow">Mapa del sitio · Vista consolidada</div>
+    <h1>7. Matriz de acceso por perfil</h1>
+    <p>Comparativo del alcance de cada perfil del Marketplace + AGD sobre marketplace, documentos, gobernanza, WMS, TOS, publicación de servicios y reportes.</p>
+  </div>
+
+  <div class="legend">
+    <span><span class="swatch yes"></span>Acceso habilitado</span>
+    <span><span class="swatch qual"></span>Acceso con alcance específico</span>
+    <span><span class="swatch no"></span>Sin acceso</span>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Perfil</th>
+          <th>Marketplace</th>
+          <th>Documentos</th>
+          <th>Gobernanza</th>
+          <th>WMS</th>
+          <th>TOS</th>
+          <th>Publicación de servicios</th>
+          <th>Reportes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Visitante</td>
+          <td><span class="pill qual">Público</span></td>
+          <td><span class="pill qual">Referenciales</span></td>
+          <td><span class="pill qual">Pública</span></td>
+          <td><span class="pill no">No</span></td>
+          <td><span class="pill no">No</span></td>
+          <td><span class="pill no">No</span></td>
+          <td><span class="pill no">No</span></td>
+        </tr>
+        <tr>
+          <td>Consultor / tercero autorizado</td>
+          <td><span class="pill no">—</span></td>
+          <td><span class="pill qual">Consulta autorizada</span></td>
+          <td><span class="pill no">—</span></td>
+          <td><span class="pill no">Sin intervención</span></td>
+          <td><span class="pill no">Sin intervención</span></td>
+          <td><span class="pill no">No</span></td>
+          <td><span class="pill no">—</span></td>
+        </tr>
+        <tr>
+          <td>Importador / exportador</td>
+          <td><span class="pill yes">Cliente</span></td>
+          <td><span class="pill qual">Comerciales</span></td>
+          <td><span class="pill no">—</span></td>
+          <td><span class="pill no">No</span></td>
+          <td><span class="pill no">No</span></td>
+          <td><span class="pill no">No</span></td>
+          <td><span class="pill yes">Propios</span></td>
+        </tr>
+        <tr>
+          <td>Agente de aduanas</td>
+          <td><span class="pill no">—</span></td>
+          <td><span class="pill qual">Aduaneros</span></td>
+          <td><span class="pill qual">SIDUNEA</span></td>
+          <td><span class="pill no">No</span></td>
+          <td><span class="pill no">No</span></td>
+          <td><span class="pill yes">Servicios aduanales</span></td>
+          <td><span class="pill yes">Sí</span></td>
+        </tr>
+        <tr>
+          <td>Operador del AGD</td>
+          <td><span class="pill no">—</span></td>
+          <td><span class="pill qual">AGD</span></td>
+          <td><span class="pill yes">Sí</span></td>
+          <td><span class="pill yes">Sí</span></td>
+          <td><span class="pill no">No</span></td>
+          <td><span class="pill yes">Servicios AGD</span></td>
+          <td><span class="pill yes">Sí</span></td>
+        </tr>
+        <tr>
+          <td>Agente / operador TOS</td>
+          <td><span class="pill no">—</span></td>
+          <td><span class="pill qual">TOS</span></td>
+          <td><span class="pill yes">Sí</span></td>
+          <td><span class="pill no">No</span></td>
+          <td><span class="pill yes">Sí</span></td>
+          <td><span class="pill yes">Servicios TOS / transporte</span></td>
+          <td><span class="pill yes">Sí</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="footer">
+    <span>Marketplace AGD · Mapa del sitio — Sección 7</span>
+    <span>“—” indica alcance no especificado para ese perfil en la fuente</span>
+  </div>
+
+</div>
+</body>
+</html>

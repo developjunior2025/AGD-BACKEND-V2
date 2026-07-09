@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head>
+<meta charset="utf-8"/>
+<title>Infografía — Módulos globales transversales · Marketplace AGD</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.47.0/tabler-icons.min.css" rel="stylesheet"/>
+<style>
+  :root{
+    --navy:#0b2545;
+    --navy2:#123a6b;
+    --accent-odoo:#2f6fed;
+    --accent-odoo-bg:#eaf1ff;
+    --accent-agd:#e0672a;
+    --accent-agd-bg:#fff0e7;
+    --ink:#16233a;
+    --sub:#5b6b85;
+    --line:#e3e8f0;
+    --bg:#f4f6fb;
+    --card:#ffffff;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{
+    font-family:'Inter',sans-serif;
+    background:var(--bg);
+    color:var(--ink);
+    padding:40px 0 60px;
+  }
+  .sheet{
+    max-width:980px;
+    margin:0 auto;
+    background:var(--card);
+    border-radius:20px;
+    overflow:hidden;
+    box-shadow:0 20px 60px rgba(11,37,69,0.12);
+  }
+  .hero{
+    background:linear-gradient(135deg,var(--navy) 0%,var(--navy2) 55%,#1c5aa8 100%);
+    color:#fff;
+    padding:44px 48px 38px;
+    position:relative;
+  }
+  .hero::after{
+    content:"";
+    position:absolute;
+    right:-60px; top:-60px;
+    width:260px; height:260px;
+    border-radius:50%;
+    background:rgba(255,255,255,0.06);
+  }
+  .hero .eyebrow{
+    font-size:12px;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    color:#a9c4f0;
+    font-weight:600;
+    margin-bottom:10px;
+  }
+  .hero h1{
+    font-size:29px;
+    font-weight:800;
+    line-height:1.18;
+    max-width:680px;
+  }
+  .hero p{
+    margin-top:12px;
+    font-size:14.5px;
+    color:#c9d9f4;
+    max-width:640px;
+    line-height:1.6;
+  }
+  .hero .badges{
+    display:flex; gap:10px; margin-top:22px; flex-wrap:wrap;
+  }
+  .hero .badges span{
+    background:rgba(255,255,255,0.12);
+    border:1px solid rgba(255,255,255,0.25);
+    padding:6px 14px;
+    border-radius:99px;
+    font-size:12px;
+    font-weight:500;
+  }
+
+  .legend{
+    display:flex; gap:22px; margin:28px 48px 0; font-size:12.5px; color:var(--sub);
+  }
+  .legend span{ display:flex; align-items:center; gap:7px; }
+  .dot{ width:10px;height:10px;border-radius:50%; }
+  .dot.odoo{ background:var(--accent-odoo); }
+  .dot.agd{ background:var(--accent-agd); }
+
+  .module{
+    padding:26px 48px;
+    border-bottom:1px solid var(--line);
+  }
+  .module:last-child{ border-bottom:none; }
+  .module-head{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin-bottom:16px;
+  }
+  .module-head i{
+    font-size:19px;
+    color:var(--accent-odoo);
+    background:var(--accent-odoo-bg);
+    width:38px;height:38px;
+    border-radius:11px;
+    display:flex;align-items:center;justify-content:center;
+    flex-shrink:0;
+  }
+  .module-head h2{
+    font-size:16px;
+    font-weight:700;
+    color:var(--ink);
+  }
+
+  .compare{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:16px;
+  }
+  .col{
+    border-radius:14px;
+    padding:16px 18px 14px;
+    border:1px solid var(--line);
+  }
+  .col.odoo{ background:var(--accent-odoo-bg); border-color:#d4e3fc; }
+  .col.agd{ background:var(--accent-agd-bg); border-color:#fbdcc6; }
+  .col h4{
+    font-size:12px;
+    font-weight:700;
+    margin-bottom:10px;
+  }
+  .col.odoo h4{ color:#1d4fa8; }
+  .col.agd h4{ color:#a8451a; }
+  .pill-list{ display:flex; flex-wrap:wrap; gap:6px; }
+  .pill{
+    font-size:11px;
+    font-family:'SFMono-Regular',Consolas,monospace;
+    padding:5px 9px;
+    border-radius:8px;
+    background:#fff;
+    border:1px solid rgba(0,0,0,0.06);
+    font-weight:500;
+  }
+  .col.odoo .pill{ color:#1d4fa8; }
+  .col.agd .pill{ color:#a8451a; }
+
+  .footer{
+    padding:22px 48px 30px;
+    font-size:11.5px;
+    color:var(--sub);
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+  }
+
+  @media (max-width:800px){
+    .compare{ grid-template-columns:1fr; }
+  }
+
+.pill.ext{border-color:#b9c9ef}
+.pill.ext sup{color:var(--accent-odoo);margin-left:2px}
+.dropped-block{margin-top:14px;padding-top:12px;border-top:1px dashed var(--line)}
+.dropped-title{font-size:11px;color:var(--sub);margin-bottom:8px}
+.pill.dropped{font-size:10.5px;font-family:'SFMono-Regular',Consolas,monospace;padding:4px 9px;border-radius:8px;background:#fff;border:1px dashed var(--line);color:var(--sub);margin:3px 4px 0 0;display:inline-flex}
+.pill.dropped s{opacity:0.65}
+.ext-note{font-size:10.5px;color:var(--sub);margin-top:8px}
+</style>
+</head>
+<body>
+<div class="sheet">
+<div class="hero">
+<div class="eyebrow">Mapa del sitio · Capa transversal</div>
+<h1>5. Módulos globales transversales</h1>
+<p>Servicios compartidos que dan soporte a todos los perfiles del Marketplace + AGD: catálogo único de servicios, gobernanza, documentos maestros, matrices de permisos, reportes y configuración general.</p>
+<div class="badges">
+<span><i class="ti ti-stack-2"></i> 6 módulos globales</span>
+<span><i class="ti ti-shield-check"></i> Gobernanza compartida</span>
+</div>
+</div>
+<div class="legend">
+<span><span class="dot odoo"></span>Odoo, base referencial</span>
+<span><span class="dot agd"></span>Desarrollo propio AGD</span>
+</div>
+<div class="module">
+<div class="module-head"><i class="ti ti-shopping-bag"></i><h2>Módulo global de productos y servicios del ecosistema</h2></div>
+<div class="compare">
+<div class="col odoo"><h4>Tablas Odoo</h4><div class="pill-list"><span class="pill mono ext" title="Ampliada con campos propios AGD">product_template<sup>†</sup></span>
+<span class="pill mono">product_product</span>
+<span class="pill mono">product_category</span>
+<span class="pill mono">product_pricelist</span>
+<span class="pill mono">product_pricelist_item</span>
+<span class="pill mono">product_attribute</span>
+<span class="pill mono">product_attribute_value</span>
+<span class="pill mono">uom_uom</span>
+<span class="pill mono">uom_category</span>
+<span class="pill mono">rating_rating</span>
+<span class="pill mono ext" title="Ampliada con campos propios AGD">resource_calendar<sup>†</sup></span>
+<span class="pill mono ext" title="Ampliada con campos propios AGD">ir_rule<sup>†</sup></span></div></div>
+<div class="col agd"><h4>Tablas AGD (necesarias)</h4><div class="pill-list"><span class="pill mono">agd_service_requirement</span>
+<span class="pill mono">agd_service_sla</span>
+<span class="pill mono">agd_service_publication</span>
+<span class="pill mono">agd_service_publication_version</span></div></div>
+</div><p class="ext-note">† Tabla Odoo ampliada con campos propios (no requiere tabla nueva).</p><div class="dropped-block"><p class="dropped-title">7 tabla(s) descartada(s) tras comparar con Odoo:</p><div class="pill-list"><span class="pill dropped"><s>agd_service_category</s> → product_category</span>
+<span class="pill dropped"><s>agd_service_subcategory</s> → product_category</span>
+<span class="pill dropped"><s>agd_service</s> → product_template</span>
+<span class="pill dropped"><s>agd_service_detail</s> → product_template</span>
+<span class="pill dropped"><s>agd_service_tariff</s> → product_pricelist</span>
+<span class="pill dropped"><s>agd_service_availability</s> → resource_calendar</span>
+<span class="pill dropped"><s>agd_service_publication_permission</s> → ir_rule</span></div></div>
+</div>
+<div class="module">
+<div class="module-head"><i class="ti ti-shield-check"></i><h2>Módulo global de gobernanza</h2></div>
+<div class="compare">
+<div class="col odoo"><h4>Tablas Odoo</h4><div class="pill-list"><span class="pill mono">ir_attachment</span>
+<span class="pill mono">mail_message</span>
+<span class="pill mono ext" title="Ampliada con campos propios AGD">mail_activity<sup>†</sup></span>
+<span class="pill mono">res_users</span>
+<span class="pill mono">res_groups</span>
+<span class="pill mono">ir_model_access</span>
+<span class="pill mono">ir_rule</span>
+<span class="pill mono">ir_sequence</span>
+<span class="pill mono">ir_config_parameter</span>
+<span class="pill mono ext" title="Ampliada con campos propios AGD">documents_folder<sup>†</sup></span>
+<span class="pill mono">documents_document</span></div></div>
+<div class="col agd"><h4>Tablas AGD (necesarias)</h4><div class="pill-list"><span class="pill mono">agd_case</span>
+<span class="pill mono">agd_document_checklist</span>
+<span class="pill mono">agd_governance_workflow</span></div></div>
+</div><p class="ext-note">† Tabla Odoo ampliada con campos propios (no requiere tabla nueva).</p><div class="dropped-block"><p class="dropped-title">7 tabla(s) descartada(s) tras comparar con Odoo:</p><div class="pill-list"><span class="pill dropped"><s>agd_case_folder</s> → documents_folder</span>
+<span class="pill dropped"><s>agd_case_status_event</s> → mail_message</span>
+<span class="pill dropped"><s>agd_document</s> → documents_document</span>
+<span class="pill dropped"><s>agd_document_version</s> → documents_document</span>
+<span class="pill dropped"><s>agd_governance_approval</s> → mail_activity</span>
+<span class="pill dropped"><s>agd_governance_audit_log</s> → mail_message</span>
+<span class="pill dropped"><s>agd_governance_trace_event</s> → mail_message</span></div></div>
+</div>
+<div class="module">
+<div class="module-head"><i class="ti ti-file-text"></i><h2>Módulo global de documentos maestros</h2></div>
+<div class="compare">
+<div class="col odoo"><h4>Tablas Odoo</h4><div class="pill-list"><span class="pill mono">ir_attachment</span>
+<span class="pill mono">documents_document</span>
+<span class="pill mono">documents_folder</span>
+<span class="pill mono">documents_tag</span>
+<span class="pill mono">mail_message</span>
+<span class="pill mono">mail_activity</span></div></div>
+<div class="col agd"><h4>Tablas AGD (necesarias)</h4><div class="pill-list"><span class="pill mono">agd_document_status</span>
+<span class="pill mono">agd_document_relation</span>
+<span class="pill mono">agd_document_requirement</span>
+<span class="pill mono">agd_document_checklist</span></div></div>
+</div><div class="dropped-block"><p class="dropped-title">6 tabla(s) descartada(s) tras comparar con Odoo:</p><div class="pill-list"><span class="pill dropped"><s>agd_document</s> → documents_document</span>
+<span class="pill dropped"><s>agd_document_type</s> → documents_tag</span>
+<span class="pill dropped"><s>agd_document_version</s> → documents_document</span>
+<span class="pill dropped"><s>agd_document_file</s> → ir_attachment</span>
+<span class="pill dropped"><s>agd_document_metadata</s> → documents_document</span>
+<span class="pill dropped"><s>agd_document_access_log</s> → mail_message</span></div></div>
+</div>
+<div class="module">
+<div class="module-head"><i class="ti ti-table"></i><h2>Módulo global de matriz de gobernanza</h2></div>
+<div class="compare">
+<div class="col odoo"><h4>Tablas Odoo</h4><div class="pill-list"><span class="pill mono">res_groups</span>
+<span class="pill mono">res_groups_users_rel</span>
+<span class="pill mono">ir_model</span>
+<span class="pill mono">ir_model_fields</span>
+<span class="pill mono">ir_model_access</span>
+<span class="pill mono ext" title="Ampliada con campos propios AGD">ir_rule<sup>†</sup></span></div></div>
+<div class="col agd"><h4>Tablas AGD (necesarias)</h4><div class="pill-list"><span class="pill mono">agd_governance_matrix</span>
+<span class="pill mono">agd_governance_matrix_version</span>
+<span class="pill mono">agd_document_profile_matrix</span>
+<span class="pill mono">agd_process_raci_matrix</span>
+<span class="pill mono">agd_raci_assignment</span>
+<span class="pill mono">agd_segregation_rule</span>
+<span class="pill mono">agd_escalation_matrix</span></div></div>
+</div><p class="ext-note">† Tabla Odoo ampliada con campos propios (no requiere tabla nueva).</p><div class="dropped-block"><p class="dropped-title">2 tabla(s) descartada(s) tras comparar con Odoo:</p><div class="pill-list"><span class="pill dropped"><s>agd_document_permission_matrix</s> → ir_rule</span>
+<span class="pill dropped"><s>agd_document_permission_rule</s> → ir_rule</span></div></div>
+</div>
+<div class="module">
+<div class="module-head"><i class="ti ti-chart-bar"></i><h2>Módulo de reportes y estadísticas</h2></div>
+<div class="compare">
+<div class="col odoo"><h4>Tablas Odoo</h4><div class="pill-list"><span class="pill mono">sale_report</span>
+<span class="pill mono">account_move</span>
+<span class="pill mono">account_move_line</span>
+<span class="pill mono">stock_picking</span>
+<span class="pill mono">stock_move</span>
+<span class="pill mono">stock_quant</span>
+<span class="pill mono">mail_message</span>
+<span class="pill mono">ir_attachment</span>
+<span class="pill mono">ir_actions_report</span></div></div>
+<div class="col agd"><h4>Tablas AGD (necesarias)</h4><div class="pill-list"><span class="pill mono">agd_report_snapshot</span>
+<span class="pill mono">agd_kpi_definition</span>
+<span class="pill mono">agd_kpi_measurement</span>
+<span class="pill mono">agd_dashboard_profile_layout</span>
+<span class="pill mono">agd_analytics_event</span></div></div>
+</div><div class="dropped-block"><p class="dropped-title">4 tabla(s) descartada(s) tras comparar con Odoo:</p><div class="pill-list"><span class="pill dropped"><s>agd_report_definition</s> → ir_actions_report</span>
+<span class="pill dropped"><s>agd_report_filter</s> no requiere tabla</span>
+<span class="pill dropped"><s>agd_dashboard_widget</s> no requiere tabla</span>
+<span class="pill dropped"><s>agd_audit_report</s> → mail_message</span></div></div>
+</div>
+<div class="module">
+<div class="module-head"><i class="ti ti-settings"></i><h2>Módulo de configuración</h2></div>
+<div class="compare">
+<div class="col odoo"><h4>Tablas Odoo</h4><div class="pill-list"><span class="pill mono ext" title="Ampliada con campos propios AGD">ir_config_parameter<sup>†</sup></span>
+<span class="pill mono">ir_sequence</span>
+<span class="pill mono">res_currency</span>
+<span class="pill mono">res_currency_rate</span>
+<span class="pill mono">account_tax</span>
+<span class="pill mono">product_pricelist</span>
+<span class="pill mono">product_pricelist_item</span>
+<span class="pill mono">res_users</span>
+<span class="pill mono">res_groups</span>
+<span class="pill mono">ir_model_access</span>
+<span class="pill mono">ir_rule</span>
+<span class="pill mono">mail_template</span>
+<span class="pill mono">product_category</span>
+<span class="pill mono">product_template</span>
+<span class="pill mono">ir_actions_server</span></div></div>
+<div class="col agd"><h4>Tablas AGD (necesarias)</h4><div class="pill-list"><span class="pill mono">agd_tariff_rule</span>
+<span class="pill mono">agd_sla_rule</span>
+<span class="pill mono">agd_deadline_rule</span>
+<span class="pill mono">agd_external_integration_reference</span></div></div>
+</div><p class="ext-note">† Tabla Odoo ampliada con campos propios (no requiere tabla nueva).</p><div class="dropped-block"><p class="dropped-title">9 tabla(s) descartada(s) tras comparar con Odoo:</p><div class="pill-list"><span class="pill dropped"><s>agd_parameter</s> → ir_config_parameter</span>
+<span class="pill dropped"><s>agd_parameter_group</s> → ir_config_parameter</span>
+<span class="pill dropped"><s>agd_currency_rate_reference</s> → res_currency_rate</span>
+<span class="pill dropped"><s>agd_tax_reference</s> → account_tax</span>
+<span class="pill dropped"><s>agd_catalog</s> → product_category</span>
+<span class="pill dropped"><s>agd_catalog_item</s> → product_template</span>
+<span class="pill dropped"><s>agd_notification_rule</s> → mail_template</span>
+<span class="pill dropped"><s>agd_workflow_config</s> → ir_actions_server</span>
+<span class="pill dropped"><s>agd_governance_matrix_config</s> → ir_config_parameter</span></div></div>
+</div>
+<div class="footer">
+<span>Marketplace AGD · Mapa del sitio — Sección 5</span>
+<span>Capa: módulos globales transversales</span>
+</div>
+</div>
+</body>
+</html>

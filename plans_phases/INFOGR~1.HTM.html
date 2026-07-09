@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head>
+<meta charset="utf-8"/>
+<title>Infografía — HOME · Marketplace AGD</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.47.0/tabler-icons.min.css" rel="stylesheet"/>
+<style>
+  :root{
+    --navy:#0b2545;
+    --navy2:#123a6b;
+    --accent-odoo:#2f6fed;
+    --accent-odoo-bg:#eaf1ff;
+    --accent-agd:#e0672a;
+    --accent-agd-bg:#fff0e7;
+    --ink:#16233a;
+    --sub:#5b6b85;
+    --line:#e3e8f0;
+    --bg:#f4f6fb;
+    --card:#ffffff;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{
+    font-family:'Inter',sans-serif;
+    background:var(--bg);
+    color:var(--ink);
+    padding:40px 0 60px;
+  }
+  .sheet{
+    max-width:980px;
+    margin:0 auto;
+    background:var(--card);
+    border-radius:20px;
+    overflow:hidden;
+    box-shadow:0 20px 60px rgba(11,37,69,0.12);
+  }
+  .hero{
+    background:linear-gradient(135deg,var(--navy) 0%,var(--navy2) 55%,#1c5aa8 100%);
+    color:#fff;
+    padding:44px 48px 38px;
+    position:relative;
+  }
+  .hero::after{
+    content:"";
+    position:absolute;
+    right:-60px; top:-60px;
+    width:260px; height:260px;
+    border-radius:50%;
+    background:rgba(255,255,255,0.06);
+  }
+  .hero .eyebrow{
+    font-size:12px;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    color:#a9c4f0;
+    font-weight:600;
+    margin-bottom:10px;
+  }
+  .hero h1{
+    font-size:32px;
+    font-weight:800;
+    line-height:1.15;
+    max-width:640px;
+  }
+  .hero p{
+    margin-top:12px;
+    font-size:14.5px;
+    color:#c9d9f4;
+    max-width:600px;
+    line-height:1.6;
+  }
+  .hero .badges{
+    display:flex; gap:10px; margin-top:22px; flex-wrap:wrap;
+  }
+  .hero .badges span{
+    background:rgba(255,255,255,0.12);
+    border:1px solid rgba(255,255,255,0.25);
+    padding:6px 14px;
+    border-radius:99px;
+    font-size:12px;
+    font-weight:500;
+  }
+
+  .section{
+    padding:36px 48px;
+    border-bottom:1px solid var(--line);
+  }
+  .section:last-child{ border-bottom:none; }
+  .section-head{
+    display:flex;
+    align-items:baseline;
+    gap:10px;
+    margin-bottom:20px;
+  }
+  .section-head .num{
+    font-size:12px;
+    font-weight:700;
+    color:#fff;
+    background:var(--navy);
+    width:26px;height:26px;
+    border-radius:8px;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .section-head h2{
+    font-size:19px;
+    font-weight:700;
+    color:var(--ink);
+  }
+  .section-head .hint{
+    font-size:12.5px;
+    color:var(--sub);
+    margin-left:auto;
+  }
+
+  .feat-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:14px;
+  }
+  .feat-card{
+    background:#f9fafc;
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:18px 16px;
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+  }
+  .feat-card i{
+    font-size:22px;
+    color:var(--accent-odoo);
+    background:var(--accent-odoo-bg);
+    width:40px;height:40px;
+    border-radius:11px;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .feat-card h3{
+    font-size:13.5px;
+    font-weight:600;
+  }
+  .feat-card p{
+    font-size:12px;
+    color:var(--sub);
+    line-height:1.5;
+  }
+
+  .legend{
+    display:flex; gap:22px; margin-bottom:20px; font-size:12.5px; color:var(--sub);
+  }
+  .legend span{ display:flex; align-items:center; gap:7px; }
+  .dot{ width:10px;height:10px;border-radius:50%; }
+  .dot.odoo{ background:var(--accent-odoo); }
+  .dot.agd{ background:var(--accent-agd); }
+
+  .compare{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:20px;
+  }
+  .col{
+    border-radius:14px;
+    padding:20px 20px 18px;
+    border:1px solid var(--line);
+  }
+  .col.odoo{ background:var(--accent-odoo-bg); border-color:#d4e3fc; }
+  .col.agd{ background:var(--accent-agd-bg); border-color:#fbdcc6; }
+  .col h4{
+    font-size:13px;
+    font-weight:700;
+    margin-bottom:12px;
+    display:flex; align-items:center; gap:8px;
+  }
+  .col.odoo h4{ color:#1d4fa8; }
+  .col.agd h4{ color:#a8451a; }
+  .pill-list{ display:flex; flex-wrap:wrap; gap:7px; }
+  .pill{
+    font-size:12px;
+    padding:6px 11px;
+    border-radius:8px;
+    background:#fff;
+    border:1px solid rgba(0,0,0,0.06);
+    font-weight:500;
+  }
+  .pill.mono{ font-family:'SFMono-Regular',Consolas,monospace; font-size:11.5px; }
+  .col.odoo .pill{ color:#1d4fa8; }
+  .col.agd .pill{ color:#a8451a; }
+
+  .footer{
+    padding:22px 48px 30px;
+    font-size:11.5px;
+    color:var(--sub);
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+  }
+
+  @media (max-width:800px){
+    .feat-grid{ grid-template-columns:repeat(2,1fr); }
+    .compare{ grid-template-columns:1fr; }
+  }
+
+.pill.ext{border-color:#b9c9ef}
+.pill.ext sup{color:var(--accent-odoo);margin-left:2px}
+.dropped-block{margin-top:16px;padding-top:14px;border-top:1px dashed var(--line)}
+.dropped-title{font-size:11.5px;color:var(--sub);margin-bottom:8px}
+.pill.dropped{font-size:11px;font-family:'SFMono-Regular',Consolas,monospace;padding:4px 9px;border-radius:8px;background:#fff;border:1px dashed var(--line);color:var(--sub);margin:3px 4px 0 0;display:inline-flex}
+.pill.dropped s{opacity:0.65}
+.ext-note{font-size:11px;color:var(--sub);margin-top:10px}
+</style>
+</head>
+<body>
+<div class="sheet">
+<div class="hero">
+<div class="eyebrow">Mapa del sitio · Perfil público</div>
+<h1>HOME — Presentación del ecosistema</h1>
+<p>Portal de entrada del Marketplace + AGD para comercio exterior: alcance logístico, comercial, aduanero y portuario, con acceso guiado a información pública, normativa y plataformas externas.</p>
+<div class="badges">
+<span><i class="ti ti-building-store"></i> Marketplace + AGD</span>
+<span><i class="ti ti-anchor"></i> Comercio exterior</span>
+<span><i class="ti ti-world"></i> Portal público</span>
+</div>
+</div>
+<div class="section">
+<div class="section-head">
+<div class="num">1</div>
+<h2>Funcionalidades del HOME</h2>
+<div class="hint">7 capacidades clave</div>
+</div>
+<div class="feat-grid">
+<div class="feat-card">
+<i class="ti ti-building-store"></i>
+<h3>Descripción del ecosistema</h3>
+<p>Marketplace + AGD para comercio exterior.</p>
+</div>
+<div class="feat-card">
+<i class="ti ti-anchor"></i>
+<h3>Alcance operativo</h3>
+<p>Logístico, comercial, aduanero y portuario.</p>
+</div>
+<div class="feat-card">
+<i class="ti ti-map-2"></i>
+<h3>Mapa del sitio</h3>
+<p>Guía de navegación del portal.</p>
+</div>
+<div class="feat-card">
+<i class="ti ti-bell"></i>
+<h3>Novedades y avisos</h3>
+<p>Comunicados operativos vigentes.</p>
+</div>
+<div class="feat-card">
+<i class="ti ti-list-details"></i>
+<h3>Categorías</h3>
+<p>Consulta pública de productos y servicios.</p>
+</div>
+<div class="feat-card">
+<i class="ti ti-shield-check"></i>
+<h3>Trazabilidad y cumplimiento</h3>
+<p>Información normativa y de control.</p>
+</div>
+<div class="feat-card" style="grid-column:span 2">
+<i class="ti ti-external-link"></i>
+<h3>Acceso a plataformas externas</h3>
+<p>SENIAT, Bolipuertos y otros organismos.</p>
+</div>
+</div>
+</div>
+<div class="section">
+<div class="section-head">
+<div class="num">2</div>
+<h2>Módulos Odoo</h2>
+</div>
+<div class="legend">
+<span><span class="dot odoo"></span>Odoo, base referencial</span>
+<span><span class="dot agd"></span>Desarrollo propio AGD</span>
+</div>
+<div class="compare">
+<div class="col odoo">
+<h4><i class="ti ti-package"></i>Módulos Odoo referenciales</h4>
+<div class="pill-list">
+<span class="pill">Website / Portal</span>
+<span class="pill">Website Pages</span>
+<span class="pill">Website Menus</span>
+<span class="pill">Website Forms</span>
+<span class="pill">Contacts</span>
+<span class="pill">CRM Leads</span>
+<span class="pill">Documents / Attachments</span>
+</div>
+</div>
+<div class="col agd">
+<h4><i class="ti ti-stack-2"></i>Módulos propios AGD</h4>
+<div class="pill-list">
+<span class="pill">Portal público del ecosistema</span>
+<span class="pill">Avisos operativos</span>
+<span class="pill">Directorio normativo</span>
+<span class="pill">Consulta pública de categorías</span>
+<span class="pill">Enlaces externos controlados</span>
+<span class="pill">Versionado público del portal</span>
+</div>
+</div>
+</div>
+</div>
+<div class="section">
+<div class="section-head">
+<div class="num">3</div>
+<h2>Modelo de datos</h2>
+<div class="hint">Tablas referenciales y propias</div>
+</div>
+<div class="compare">
+<div class="col odoo">
+<h4><i class="ti ti-database"></i>Tablas Odoo referenciales</h4>
+<div class="pill-list">
+<span class="pill mono">website</span>
+<span class="pill mono ext" title="Ampliada con campos propios AGD">website_page<sup>†</sup></span>
+<span class="pill mono ext" title="Ampliada con campos propios AGD">website_menu<sup>†</sup></span>
+<span class="pill mono">website_visitor</span>
+<span class="pill mono">website_track</span>
+<span class="pill mono">res_partner</span>
+<span class="pill mono">crm_lead</span>
+<span class="pill mono">ir_attachment</span>
+<span class="pill mono">mail_message</span>
+<span class="pill mono">mailing_contact</span>
+</div>
+</div>
+<div class="col agd">
+<h4><i class="ti ti-database-cog"></i>Tablas propias AGD (necesarias)</h4>
+<div class="pill-list">
+<span class="pill mono">agd_legal_policy</span>
+<span class="pill mono">agd_legal_policy_version</span>
+<span class="pill mono">agd_portal_version</span>
+</div>
+</div>
+</div><p class="ext-note">† Tabla Odoo ampliada con campos propios del perfil (no requiere tabla nueva).</p><div class="dropped-block"><p class="dropped-title">8 tabla(s) propuesta(s) inicialmente, descartadas tras comparar con Odoo:</p><div class="pill-list"><span class="pill dropped"><s>agd_cms_page</s> → website_page</span>
+<span class="pill dropped"><s>agd_cms_menu</s> → website_menu</span>
+<span class="pill dropped"><s>agd_public_notice</s> → website_page</span>
+<span class="pill dropped"><s>agd_external_platform_link</s> → website_menu</span>
+<span class="pill dropped"><s>agd_faq</s> → website_page</span>
+<span class="pill dropped"><s>agd_contact_request</s> → crm_lead</span>
+<span class="pill dropped"><s>agd_interest_registration</s> → crm_lead</span>
+<span class="pill dropped"><s>agd_newsletter_subscription</s> → mailing_contact</span></div></div>
+</div>
+<div class="footer">
+<span>Marketplace AGD · Mapa del sitio — Sección HOME</span>
+<span>Perfil: público / visitante</span>
+</div>
+</div>
+</body>
+</html>

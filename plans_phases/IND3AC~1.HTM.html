@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head>
+<meta charset="utf-8"/>
+<title>Infografía — Importador / Exportador · Marketplace AGD</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.47.0/tabler-icons.min.css" rel="stylesheet"/>
+<style>
+  :root{
+    --navy:#0b2545;
+    --navy2:#123a6b;
+    --accent-odoo:#2f6fed;
+    --accent-odoo-bg:#eaf1ff;
+    --accent-agd:#e0672a;
+    --accent-agd-bg:#fff0e7;
+    --ink:#16233a;
+    --sub:#5b6b85;
+    --line:#e3e8f0;
+    --bg:#f4f6fb;
+    --card:#ffffff;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{
+    font-family:'Inter',sans-serif;
+    background:var(--bg);
+    color:var(--ink);
+    padding:40px 0 60px;
+  }
+  .sheet{
+    max-width:980px;
+    margin:0 auto;
+    background:var(--card);
+    border-radius:20px;
+    overflow:hidden;
+    box-shadow:0 20px 60px rgba(11,37,69,0.12);
+  }
+  .hero{
+    background:linear-gradient(135deg,var(--navy) 0%,var(--navy2) 55%,#1c5aa8 100%);
+    color:#fff;
+    padding:44px 48px 38px;
+    position:relative;
+  }
+  .hero::after{
+    content:"";
+    position:absolute;
+    right:-60px; top:-60px;
+    width:260px; height:260px;
+    border-radius:50%;
+    background:rgba(255,255,255,0.06);
+  }
+  .hero .eyebrow{
+    font-size:12px;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    color:#a9c4f0;
+    font-weight:600;
+    margin-bottom:10px;
+  }
+  .hero h1{
+    font-size:30px;
+    font-weight:800;
+    line-height:1.15;
+    max-width:660px;
+  }
+  .hero p{
+    margin-top:12px;
+    font-size:14.5px;
+    color:#c9d9f4;
+    max-width:640px;
+    line-height:1.6;
+  }
+  .hero .badges{
+    display:flex; gap:10px; margin-top:22px; flex-wrap:wrap;
+  }
+  .hero .badges span{
+    background:rgba(255,255,255,0.12);
+    border:1px solid rgba(255,255,255,0.25);
+    padding:6px 14px;
+    border-radius:99px;
+    font-size:12px;
+    font-weight:500;
+  }
+
+  .section{
+    padding:36px 48px;
+    border-bottom:1px solid var(--line);
+  }
+  .section:last-child{ border-bottom:none; }
+  .section-head{
+    display:flex;
+    align-items:baseline;
+    gap:10px;
+    margin-bottom:20px;
+  }
+  .section-head .num{
+    font-size:12px;
+    font-weight:700;
+    color:#fff;
+    background:var(--navy);
+    width:26px;height:26px;
+    border-radius:8px;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .section-head h2{
+    font-size:19px;
+    font-weight:700;
+    color:var(--ink);
+  }
+  .section-head .hint{
+    font-size:12.5px;
+    color:var(--sub);
+    margin-left:auto;
+  }
+
+  .feat-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:12px;
+  }
+  .feat-card{
+    background:#f9fafc;
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:15px 16px;
+    display:flex;
+    gap:12px;
+    align-items:flex-start;
+  }
+  .feat-card i{
+    font-size:19px;
+    color:var(--accent-odoo);
+    background:var(--accent-odoo-bg);
+    width:36px;height:36px;
+    border-radius:10px;
+    display:flex;align-items:center;justify-content:center;
+    flex-shrink:0;
+  }
+  .feat-card h3{
+    font-size:13px;
+    font-weight:600;
+    margin-bottom:3px;
+  }
+  .feat-card p{
+    font-size:11.5px;
+    color:var(--sub);
+    line-height:1.5;
+  }
+
+  .legend{
+    display:flex; gap:22px; margin-bottom:20px; font-size:12.5px; color:var(--sub);
+  }
+  .legend span{ display:flex; align-items:center; gap:7px; }
+  .dot{ width:10px;height:10px;border-radius:50%; }
+  .dot.odoo{ background:var(--accent-odoo); }
+  .dot.agd{ background:var(--accent-agd); }
+
+  .compare{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:20px;
+  }
+  .col{
+    border-radius:14px;
+    padding:20px 20px 18px;
+    border:1px solid var(--line);
+  }
+  .col.odoo{ background:var(--accent-odoo-bg); border-color:#d4e3fc; }
+  .col.agd{ background:var(--accent-agd-bg); border-color:#fbdcc6; }
+  .col h4{
+    font-size:13px;
+    font-weight:700;
+    margin-bottom:12px;
+    display:flex; align-items:center; gap:8px;
+  }
+  .col.odoo h4{ color:#1d4fa8; }
+  .col.agd h4{ color:#a8451a; }
+  .pill-list{ display:flex; flex-wrap:wrap; gap:6px; }
+  .pill{
+    font-size:12px;
+    padding:5px 10px;
+    border-radius:8px;
+    background:#fff;
+    border:1px solid rgba(0,0,0,0.06);
+    font-weight:500;
+  }
+  .pill.mono{ font-family:'SFMono-Regular',Consolas,monospace; font-size:11px; }
+  .col.odoo .pill{ color:#1d4fa8; }
+  .col.agd .pill{ color:#a8451a; }
+
+  .footer{
+    padding:22px 48px 30px;
+    font-size:11.5px;
+    color:var(--sub);
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+  }
+
+  @media (max-width:800px){
+    .feat-grid{ grid-template-columns:1fr; }
+    .compare{ grid-template-columns:1fr; }
+  }
+
+.pill.ext{border-color:#b9c9ef}
+.pill.ext sup{color:var(--accent-odoo);margin-left:2px}
+.dropped-block{margin-top:16px;padding-top:14px;border-top:1px dashed var(--line)}
+.dropped-title{font-size:11.5px;color:var(--sub);margin-bottom:8px}
+.pill.dropped{font-size:11px;font-family:'SFMono-Regular',Consolas,monospace;padding:4px 9px;border-radius:8px;background:#fff;border:1px dashed var(--line);color:var(--sub);margin:3px 4px 0 0;display:inline-flex}
+.pill.dropped s{opacity:0.65}
+.ext-note{font-size:11px;color:var(--sub);margin-top:10px}
+</style>
+</head>
+<body>
+<div class="sheet">
+<div class="hero">
+<div class="eyebrow">Mapa del sitio · Perfil 4.1</div>
+<h1>Importador / exportador — cliente del Marketplace</h1>
+<p>Perfil transaccional del Marketplace: desde la cotización multi-prestador hasta la contratación, el pago y el seguimiento del despacho, con expediente comercial y trazabilidad AGD → TOS → transporte → destino.</p>
+<div class="badges">
+<span><i class="ti ti-shopping-cart"></i> Cotización y contratación</span>
+<span><i class="ti ti-credit-card"></i> Transacciones comerciales</span>
+<span><i class="ti ti-truck"></i> Seguimiento de despachos</span>
+</div>
+</div>
+<div class="section">
+<div class="section-head">
+<div class="num">1</div>
+<h2>Funcionalidades del perfil</h2>
+<div class="hint">10 capacidades transaccionales</div>
+</div>
+<div class="feat-grid">
+<div class="feat-card">
+<i class="ti ti-layout-dashboard"></i>
+<div><h3>Dashboard principal</h3><p>Vista general de su operación.</p></div>
+</div>
+<div class="feat-card">
+<i class="ti ti-user-cog"></i>
+<div><h3>Gestión de perfil</h3><p>Datos de la cuenta del cliente.</p></div>
+</div>
+<div class="feat-card">
+<i class="ti ti-shopping-bag"></i>
+<div><h3>Productos y servicios</h3><p>Catálogo disponible para contratar.</p></div>
+</div>
+<div class="feat-card">
+<i class="ti ti-file-invoice"></i>
+<div><h3>Cotizaciones y contratación</h3><p>Comparación multi-prestador.</p></div>
+</div>
+<div class="feat-card">
+<i class="ti ti-credit-card"></i>
+<div><h3>Transacciones comerciales</h3><p>Órdenes, pagos y facturación.</p></div>
+</div>
+<div class="feat-card">
+<i class="ti ti-truck"></i>
+<div><h3>Seguimiento de despachos</h3><p>Estado del proceso aduanero.</p></div>
+</div>
+<div class="feat-card">
+<i class="ti ti-headset"></i>
+<div><h3>Centro de ayuda</h3><p>Soporte a la operación del cliente.</p></div>
+</div>
+<div class="feat-card">
+<i class="ti ti-clipboard-list"></i>
+<div><h3>Gobernanza comercial</h3><p>Reglas transversales de su operación.</p></div>
+</div>
+<div class="feat-card">
+<i class="ti ti-file-text"></i>
+<div><h3>Documentos maestros</h3><p>Documentación comercial de referencia.</p></div>
+</div>
+<div class="feat-card">
+<i class="ti ti-table"></i>
+<div><h3>Matriz de gobernanza</h3><p>Limitada a su propia operación.</p></div>
+</div>
+</div>
+</div>
+<div class="section">
+<div class="section-head">
+<div class="num">2</div>
+<h2>Módulos</h2>
+</div>
+<div class="legend">
+<span><span class="dot odoo"></span>Odoo, base referencial</span>
+<span><span class="dot agd"></span>Desarrollo propio AGD</span>
+</div>
+<div class="compare">
+<div class="col odoo">
+<h4><i class="ti ti-package"></i>Módulos Odoo referenciales</h4>
+<div class="pill-list">
+<span class="pill">Contacts</span>
+<span class="pill">Companies</span>
+<span class="pill">Users</span>
+<span class="pill">Sales / Quotations / Sales Orders</span>
+<span class="pill">Products / Pricelists</span>
+<span class="pill">Accounting / Invoicing / Payments</span>
+<span class="pill">Documents / Attachments</span>
+<span class="pill">Mail / Activities</span>
+<span class="pill">Helpdesk</span>
+</div>
+</div>
+<div class="col agd">
+<h4><i class="ti ti-stack-2"></i>Módulos propios AGD</h4>
+<div class="pill-list">
+<span class="pill">Cotización logística multi-prestador</span>
+<span class="pill">Carrito de servicios AGD</span>
+<span class="pill">Contratación de servicios</span>
+<span class="pill">Expediente comercial por operación</span>
+<span class="pill">Trazabilidad AGD → TOS → transporte → destino</span>
+<span class="pill">Gestión documental comercial</span>
+<span class="pill">SIDUNEA Mirror de consulta referencial</span>
+<span class="pill">Matriz RACI comercial</span>
+<span class="pill">Control de documentos comerciales propios</span>
+</div>
+</div>
+</div>
+</div>
+<div class="section">
+<div class="section-head">
+<div class="num">3</div>
+<h2>Modelo de datos</h2>
+<div class="hint">Tablas referenciales y propias</div>
+</div>
+<div class="compare">
+<div class="col odoo">
+<h4><i class="ti ti-database"></i>Tablas Odoo referenciales</h4>
+<div class="pill-list">
+<span class="pill mono">res_users</span>
+<span class="pill mono">res_partner</span>
+<span class="pill mono">res_company</span>
+<span class="pill mono">product_template</span>
+<span class="pill mono">product_product</span>
+<span class="pill mono">product_category</span>
+<span class="pill mono">product_pricelist</span>
+<span class="pill mono">product_pricelist_item</span>
+<span class="pill mono ext" title="Ampliada con campos propios AGD">sale_order<sup>†</sup></span>
+<span class="pill mono ext" title="Ampliada con campos propios AGD">sale_order_line<sup>†</sup></span>
+<span class="pill mono">account_move</span>
+<span class="pill mono">account_move_line</span>
+<span class="pill mono">account_payment</span>
+<span class="pill mono">ir_attachment</span>
+<span class="pill mono">mail_message</span>
+<span class="pill mono">mail_activity</span>
+<span class="pill mono">helpdesk_ticket</span>
+<span class="pill mono">rating_rating</span>
+<span class="pill mono">documents_document</span>
+<span class="pill mono">documents_tag</span>
+<span class="pill mono ext" title="Ampliada con campos propios AGD">ir_rule<sup>†</sup></span>
+</div>
+</div>
+<div class="col agd">
+<h4><i class="ti ti-database-cog"></i>Tablas propias AGD (necesarias)</h4>
+<div class="pill-list">
+<span class="pill mono">agd_quote_request</span>
+<span class="pill mono">agd_quote_request_line</span>
+<span class="pill mono">agd_quote_comparison</span>
+<span class="pill mono">agd_service_cart</span>
+<span class="pill mono">agd_service_cart_item</span>
+<span class="pill mono">agd_case</span>
+<span class="pill mono">agd_case_party</span>
+<span class="pill mono">agd_document_relation</span>
+<span class="pill mono">agd_document_checklist</span>
+<span class="pill mono">agd_document_profile_matrix</span>
+<span class="pill mono">agd_raci_assignment</span>
+</div>
+</div>
+</div><p class="ext-note">† Tabla Odoo ampliada con campos propios del perfil (no requiere tabla nueva).</p><div class="dropped-block"><p class="dropped-title">16 tabla(s) propuesta(s) inicialmente, descartadas tras comparar con Odoo:</p><div class="pill-list"><span class="pill dropped"><s>agd_quote</s> → sale_order</span>
+<span class="pill dropped"><s>agd_quote_line</s> → sale_order_line</span>
+<span class="pill dropped"><s>agd_service_contract</s> → sale_order</span>
+<span class="pill dropped"><s>agd_service_contract_line</s> → sale_order_line</span>
+<span class="pill dropped"><s>agd_commercial_order</s> → sale_order</span>
+<span class="pill dropped"><s>agd_commercial_order_line</s> → sale_order_line</span>
+<span class="pill dropped"><s>agd_invoice_reference</s> → account_move</span>
+<span class="pill dropped"><s>agd_account_statement</s> → account_move</span>
+<span class="pill dropped"><s>agd_payment_reference</s> → account_payment</span>
+<span class="pill dropped"><s>agd_transaction_history</s> → mail_message</span>
+<span class="pill dropped"><s>agd_case_status_event</s> → mail_message</span>
+<span class="pill dropped"><s>agd_document</s> → documents_document</span>
+<span class="pill dropped"><s>agd_document_type</s> → documents_tag</span>
+<span class="pill dropped"><s>agd_document_version</s> → documents_document</span>
+<span class="pill dropped"><s>agd_document_file</s> → ir_attachment</span>
+<span class="pill dropped"><s>agd_document_permission_matrix</s> → ir_rule</span></div></div>
+</div>
+<div class="footer">
+<span>Marketplace AGD · Mapa del sitio — Sección 4.1</span>
+<span>Perfil: importador / exportador</span>
+</div>
+</div>
+</body>
+</html>

@@ -14,6 +14,9 @@ export const ModelName = {
   CRM_LEAD: 'crm_lead',
   SERVICE_PUBLICATION: 'agd_service_publication',
   CATALOG: 'product_template',
+  SIDUNEA_MIRROR: 'agd_sidunea_mirror_record',
+  /** Consulta de expediente por referencia SIDUNEA (perfil Consultor) — capacidad separada de CASE (listado administrativo). */
+  CASE_LOOKUP: 'agd_case_lookup',
 } as const;
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName];

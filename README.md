@@ -49,6 +49,16 @@ Nota de diseño: `services` depende de `catalog` (necesita `ProductTemplate`), a
 
 Permisos nuevos: `ModelName.HOME_CONTENT`, `CRM_LEAD`, `CATALOG`, `SERVICE_PUBLICATION` — `admin` con CRUD completo + alcance `all` (migración `SeedFase3`).
 
+## Fase 4 — Perfil Consultor (solo lectura sobre expedientes)
+
+- **`sidunea`** (`src/modules/sidunea/`): contrato mínimo de espejo SIDUNEA — `SidUneaMirrorRecord` (bitácora genérica de sincronización), `SidUneaDua`, `SidUneaModcarManifest`, `SidUneaModshdExitPass`. Solo lo necesario para que el Consultor tenga algo que consultar; Fase 6 (agente de aduanas) y Fase 8 (TOS) reemplazan las creaciones administrativas de aquí por los flujos reales de declaración/manifiesto.
+- **`cases`** se extiende con tres endpoints de solo lectura, todos auditados vía `mail_message`:
+  - `GET /cases/lookup?dua=|manifest=|exitPass=` — resuelve **un** expediente a partir de exactamente una referencia SIDUNEA (no es un listado). Declarado antes de `GET /cases/:id` en el controlador para que `:id` no capture el literal `lookup`.
+  - `GET /cases/:id/tracking` — expediente + semáforo + bitácora de espejo SIDUNEA.
+  - `GET /cases/:id/documents` — documentos del expediente (mismo `DocumentsService.listByContext`, sin exponer el permiso genérico `DOCUMENT`).
+
+Decisión de permisos clave: el Consultor **no** recibe `ModelName.CASE` (por eso `GET /cases` sin filtro le da 403) — recibe únicamente `ModelName.CASE_LOOKUP` de solo lectura, una capacidad separada que solo permite resolver un expediente conociendo su referencia. Esto reproduce a nivel de RBAC la diferencia real entre "puede administrar expedientes" (admin) y "puede consultar un expediente si conoce su referencia" (consultor) — no es solo una etiqueta de rol, son permisos distintos en `ir_model_access`/`ir_rule`.
+
 ## Requisitos
 
 - Node.js 20+

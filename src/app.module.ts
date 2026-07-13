@@ -16,6 +16,7 @@ import { HealthModule } from './modules/health/health.module';
 import { HomeModule } from './modules/home/home.module';
 import { IdentityModule } from './modules/identity/identity.module';
 import { ServicesModule } from './modules/services/services.module';
+import { SidUneaModule } from './modules/sidunea/sidunea.module';
 import { UsersModule } from './modules/users/users.module';
 
 @Module({
@@ -35,6 +36,7 @@ import { UsersModule } from './modules/users/users.module';
     AgdConfigModule,
     DocumentsModule,
     GovernanceModule,
+    SidUneaModule,
     CasesModule,
     HomeModule,
     CatalogModule,

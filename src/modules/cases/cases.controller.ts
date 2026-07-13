@@ -7,10 +7,15 @@ import {
   Patch,
   Post,
   Query,
+  Req,
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
+import type { Request } from 'express';
 import { ModelName } from '../../common/constants/model-names';
+import { CurrentUser } from '../auth/decorators/current-user.decorator';
 import { RequirePermission } from '../auth/decorators/require-permission.decorator';
+import type { RequestUser } from '../identity/interfaces/request-user.interface';
+import { FindCaseReferenceDto } from '../sidunea/dto/find-case-reference.dto';
 import { AddCasePartyDto } from './dto/add-case-party.dto';
 import { CreateCaseDto } from './dto/create-case.dto';
 import { ListCasesDto } from './dto/list-cases.dto';
@@ -34,10 +39,41 @@ export class CasesController {
     return this.casesService.listCases(query, query.ownerPartnerId);
   }
 
+  // Literal antes de ':id' — si no, ':id' capturaría 'lookup'.
+  @RequirePermission(ModelName.CASE_LOOKUP, 'read')
+  @Get('lookup')
+  lookup(
+    @Query() query: FindCaseReferenceDto,
+    @CurrentUser() actor: RequestUser,
+    @Req() req: Request,
+  ) {
+    return this.casesService.lookupByReference(query, actor, req.ip ?? null);
+  }
+
   @RequirePermission(ModelName.CASE, 'read')
   @Get(':id')
   get(@Param('id', ParseIntPipe) id: number) {
     return this.casesService.getCase(id);
+  }
+
+  @RequirePermission(ModelName.CASE_LOOKUP, 'read')
+  @Get(':id/tracking')
+  getTracking(
+    @Param('id', ParseIntPipe) id: number,
+    @CurrentUser() actor: RequestUser,
+    @Req() req: Request,
+  ) {
+    return this.casesService.getTracking(id, actor, req.ip ?? null);
+  }
+
+  @RequirePermission(ModelName.CASE_LOOKUP, 'read')
+  @Get(':id/documents')
+  getCaseDocuments(
+    @Param('id', ParseIntPipe) id: number,
+    @CurrentUser() actor: RequestUser,
+    @Req() req: Request,
+  ) {
+    return this.casesService.getCaseDocuments(id, actor, req.ip ?? null);
   }
 
   @RequirePermission(ModelName.CASE, 'read')

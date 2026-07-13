@@ -4,6 +4,7 @@ import { AgdConfigModule } from '../config/config.module';
 import { DocumentsModule } from '../documents/documents.module';
 import { GovernanceModule } from '../governance/governance.module';
 import { IdentityModule } from '../identity/identity.module';
+import { SidUneaModule } from '../sidunea/sidunea.module';
 import { CasesController } from './cases.controller';
 import { CasesService } from './cases.service';
 import { CaseParty } from './entities/case-party.entity';
@@ -18,6 +19,7 @@ const ENTITIES = [Case, CaseParty, CaseSemaphore];
     AgdConfigModule,
     DocumentsModule,
     GovernanceModule,
+    SidUneaModule,
     TypeOrmModule.forFeature(ENTITIES),
   ],
   controllers: [CasesController],

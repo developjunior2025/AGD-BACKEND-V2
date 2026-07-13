@@ -9,11 +9,17 @@ import { ModelName } from '../../common/constants/model-names';
 import { PaginatedResponseDto } from '../../common/dto/paginated-response.dto';
 import { PaginationQueryDto } from '../../common/dto/pagination-query.dto';
 import { SequenceService } from '../config/sequence.service';
+import { Document } from '../documents/entities/document.entity';
 import { DocumentChecklist } from '../documents/entities/document-checklist.entity';
 import { DocumentsService } from '../documents/documents.service';
 import { GovernanceService } from '../governance/governance.service';
+import { Message, MessageType } from '../identity/entities/message.entity';
+import { RequestUser } from '../identity/interfaces/request-user.interface';
+import { SidUneaMirrorRecord } from '../sidunea/entities/sidunea-mirror-record.entity';
+import { SidUneaService } from '../sidunea/sidunea.service';
 import { AddCasePartyDto } from './dto/add-case-party.dto';
 import { CreateCaseDto } from './dto/create-case.dto';
+import { FindCaseReferenceDto } from '../sidunea/dto/find-case-reference.dto';
 import { UpdateSemaphoreDto } from './dto/update-semaphore.dto';
 import { CaseParty, CasePartyRole } from './entities/case-party.entity';
 import {
@@ -24,6 +30,12 @@ import { Case, CaseStatus } from './entities/case.entity';
 
 const CASE_SEQUENCE_CODE = 'agd_case';
 
+export interface CaseTracking {
+  case: Case;
+  semaphore: CaseSemaphore;
+  mirrorRecords: SidUneaMirrorRecord[];
+}
+
 @Injectable()
 export class CasesService {
   constructor(
@@ -32,9 +44,12 @@ export class CasesService {
     private readonly casePartyRepository: Repository<CaseParty>,
     @InjectRepository(CaseSemaphore)
     private readonly caseSemaphoreRepository: Repository<CaseSemaphore>,
+    @InjectRepository(Message)
+    private readonly messageRepository: Repository<Message>,
     private readonly sequenceService: SequenceService,
     private readonly governanceService: GovernanceService,
     private readonly documentsService: DocumentsService,
+    private readonly sidUneaService: SidUneaService,
   ) {}
 
   async createCase(dto: CreateCaseDto): Promise<Case> {
@@ -162,5 +177,76 @@ export class CasesService {
     found.status = CaseStatus.CLOSED;
     found.closedAt = new Date();
     return this.caseRepository.save(found);
+  }
+
+  // ---- Consulta de solo lectura (perfil Consultor) ---------------------------
+
+  /** Búsqueda por referencia SIDUNEA (DUA/manifiesto/hoja de salida) — no es un listado abierto. */
+  async lookupByReference(
+    dto: FindCaseReferenceDto,
+    actor: RequestUser,
+    ipAddress: string | null,
+  ): Promise<Case> {
+    const caseId = await this.sidUneaService.findCaseIdByReference(dto);
+    const found = await this.getCase(caseId);
+    await this.auditConsultation(
+      found.id,
+      actor,
+      'Consulta de expediente por referencia SIDUNEA',
+      ipAddress,
+    );
+    return found;
+  }
+
+  async getTracking(
+    caseId: number,
+    actor: RequestUser,
+    ipAddress: string | null,
+  ): Promise<CaseTracking> {
+    const found = await this.getCase(caseId);
+    const semaphore = await this.getSemaphore(caseId);
+    const mirrorRecords = await this.sidUneaService.listMirrorRecords(caseId);
+    await this.auditConsultation(
+      caseId,
+      actor,
+      'Consulta de seguimiento de expediente',
+      ipAddress,
+    );
+    return { case: found, semaphore, mirrorRecords };
+  }
+
+  async getCaseDocuments(
+    caseId: number,
+    actor: RequestUser,
+    ipAddress: string | null,
+  ): Promise<Document[]> {
+    await this.getCase(caseId);
+    const documents = await this.documentsService.listByContext(
+      ModelName.CASE,
+      caseId,
+    );
+    await this.auditConsultation(
+      caseId,
+      actor,
+      'Descarga/consulta de documentos del expediente',
+      ipAddress,
+    );
+    return documents;
+  }
+
+  private async auditConsultation(
+    caseId: number,
+    actor: RequestUser,
+    body: string,
+    ipAddress: string | null,
+  ): Promise<void> {
+    await this.messageRepository.insert({
+      resModel: ModelName.CASE,
+      resId: caseId,
+      messageType: MessageType.AUDIT,
+      body: `${body} (usuario ${actor.login})`,
+      authorId: actor.id,
+      ipAddress,
+    });
   }
 }

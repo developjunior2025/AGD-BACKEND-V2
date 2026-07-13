@@ -100,6 +100,14 @@ export class CasesService {
     return found;
   }
 
+  /** Expediente comercial propio del cliente autenticado (perfil Importador/Exportador). */
+  async listMyCases(
+    ownerPartnerId: number,
+    query: PaginationQueryDto,
+  ): Promise<PaginatedResponseDto<Case>> {
+    return this.listCases(query, ownerPartnerId);
+  }
+
   async listCases(
     query: PaginationQueryDto,
     ownerPartnerId?: number,

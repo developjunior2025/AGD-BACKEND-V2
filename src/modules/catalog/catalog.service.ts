@@ -200,6 +200,7 @@ export class CatalogService {
   ): Promise<ProductPricelistItem[]> {
     return this.productPricelistItemRepository.find({
       where: { productTemplateId, active: true },
+      relations: { pricelist: true },
     });
   }
 

@@ -6,6 +6,7 @@ import configuration from './config/configuration';
 import { envValidationSchema } from './config/env.validation';
 import { DatabaseModule } from './database/database.module';
 import { AuthModule } from './modules/auth/auth.module';
+import { BillingModule } from './modules/billing/billing.module';
 import { CasesModule } from './modules/cases/cases.module';
 import { CatalogModule } from './modules/catalog/catalog.module';
 import { AgdConfigModule } from './modules/config/config.module';
@@ -15,8 +16,10 @@ import { GovernanceModule } from './modules/governance/governance.module';
 import { HealthModule } from './modules/health/health.module';
 import { HomeModule } from './modules/home/home.module';
 import { IdentityModule } from './modules/identity/identity.module';
+import { SalesModule } from './modules/sales/sales.module';
 import { ServicesModule } from './modules/services/services.module';
 import { SidUneaModule } from './modules/sidunea/sidunea.module';
+import { SupportModule } from './modules/support/support.module';
 import { UsersModule } from './modules/users/users.module';
 
 @Module({
@@ -41,6 +44,9 @@ import { UsersModule } from './modules/users/users.module';
     HomeModule,
     CatalogModule,
     ServicesModule,
+    BillingModule,
+    SalesModule,
+    SupportModule,
   ],
   controllers: [AppController],
   providers: [AppService],

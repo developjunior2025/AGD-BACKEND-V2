@@ -17,6 +17,13 @@ export const ModelName = {
   SIDUNEA_MIRROR: 'agd_sidunea_mirror_record',
   /** Consulta de expediente por referencia SIDUNEA (perfil Consultor) — capacidad separada de CASE (listado administrativo). */
   CASE_LOOKUP: 'agd_case_lookup',
+  /** GET /cases/me — ver solo los expedientes propios (Importador/Exportador), no un listado abierto como CASE. */
+  CASE_OWN: 'agd_case_own',
+  INVOICE: 'account_move',
+  QUOTE_REQUEST: 'agd_quote_request',
+  ORDER: 'sale_order',
+  CART: 'agd_service_cart',
+  HELPDESK: 'helpdesk_ticket',
 } as const;
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName];

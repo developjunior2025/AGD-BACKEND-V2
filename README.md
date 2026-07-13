@@ -59,6 +59,19 @@ Permisos nuevos: `ModelName.HOME_CONTENT`, `CRM_LEAD`, `CATALOG`, `SERVICE_PUBLI
 
 Decisión de permisos clave: el Consultor **no** recibe `ModelName.CASE` (por eso `GET /cases` sin filtro le da 403) — recibe únicamente `ModelName.CASE_LOOKUP` de solo lectura, una capacidad separada que solo permite resolver un expediente conociendo su referencia. Esto reproduce a nivel de RBAC la diferencia real entre "puede administrar expedientes" (admin) y "puede consultar un expediente si conoce su referencia" (consultor) — no es solo una etiqueta de rol, son permisos distintos en `ir_model_access`/`ir_rule`.
 
+## Fase 5 — Cotización, contratación y perfil Importador/Exportador
+
+- **`billing`** (`src/modules/billing/`): `AccountMove`/`AccountMoveLine` (factura) y `AccountPayment` (pago asentado manualmente — sin pasarela real). `BillingService.createInvoice()` es de uso interno, invocado por `sales` al confirmar un contrato; el único endpoint propio es `POST /billing/payments` (admin).
+- **`support`** (`src/modules/support/`): `HelpdeskTicket` — autoservicio (`POST /support/tickets`, `GET /support/tickets/me`) sin permiso especial, gestión (`GET /support/tickets`, `PATCH :id/status`) gated por `ModelName.HELPDESK`.
+- **`sales`** (`src/modules/sales/`, tres controladores en el mismo módulo por los distintos prefijos de URL del plan): `SaleOrder`/`SaleOrderLine` (+ext `agd_quote`/`agd_service_contract` vía `orderType`), `QuoteRequest`/`QuoteRequestLine`, `QuoteComparison`, `ServiceCart`/`ServiceCartItem`.
+  - `QuotesController` (`quotes/requests`): solicitud de cotización multi-prestador, un prestador (hoy: admin en su nombre) responde con `POST provider-quotes`, `GET :id/comparison` compara todas las ofertas, `POST :id/select` elige una y **la convierte en contrato** (mismo camino que el checkout de carrito).
+  - `CartController` (`cart`): agregar ítems con snapshot de precio y moneda tomado del tarifario vigente en ese momento, y `POST checkout` que **agrupa el carrito por prestador** — un contrato (y un expediente) por cada prestador presente en el carrito, no uno por todo el carrito.
+  - `OrdersController` (`orders`): listado propio, y `GET :id/invoices` / `:id/payments`.
+  - Toda contratación (selección de cotización o checkout) dispara `SalesService.confirmContract()`: confirma la orden, crea el `agd_case` (perfil Importador/Exportador) vía `CasesService`, y factura vía `BillingService` — el mismo patrón de orquestación entre módulos que `CasesService.createCase()` ya usaba en Fase 2.
+- **`cases`** gana `GET /cases/me`, gated por una capacidad nueva y estrecha (`ModelName.CASE_OWN`, no el `CASE` genérico de admin) — mismo patrón de "permiso separado para acceso propio" que `CASE_LOOKUP` en Fase 4.
+
+Bug real encontrado y corregido durante esta fase: `assertOwnsPartner()` (la verificación de titularidad en `sales`) bloqueaba también al admin, que no es dueño de ningún `partnerId` de cliente — se corrigió para que el grupo `admin` la salte. Otro: `CatalogService.getServiceTariff()` no cargaba la relación `pricelist` (no es eager), así que `priceItem.pricelist.currencyId` habría fallado en tiempo de ejecución al agregar al carrito — se corrigió cargando la relación explícitamente.
+
 ## Requisitos
 
 - Node.js 20+

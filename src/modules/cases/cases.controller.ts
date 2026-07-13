@@ -12,6 +12,7 @@ import {
 import { ApiTags } from '@nestjs/swagger';
 import type { Request } from 'express';
 import { ModelName } from '../../common/constants/model-names';
+import { PaginationQueryDto } from '../../common/dto/pagination-query.dto';
 import { CurrentUser } from '../auth/decorators/current-user.decorator';
 import { RequirePermission } from '../auth/decorators/require-permission.decorator';
 import type { RequestUser } from '../identity/interfaces/request-user.interface';
@@ -39,7 +40,16 @@ export class CasesController {
     return this.casesService.listCases(query, query.ownerPartnerId);
   }
 
-  // Literal antes de ':id' — si no, ':id' capturaría 'lookup'.
+  // Literales antes de ':id' — si no, ':id' los capturaría como parámetro.
+  @RequirePermission(ModelName.CASE_OWN, 'read')
+  @Get('me')
+  listMine(
+    @CurrentUser() actor: RequestUser,
+    @Query() query: PaginationQueryDto,
+  ) {
+    return this.casesService.listMyCases(actor.partnerId, query);
+  }
+
   @RequirePermission(ModelName.CASE_LOOKUP, 'read')
   @Get('lookup')
   lookup(

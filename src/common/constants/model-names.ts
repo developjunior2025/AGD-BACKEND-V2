@@ -10,6 +10,10 @@ export const ModelName = {
   GOVERNANCE_MATRIX: 'agd_governance_matrix',
   CASE: 'agd_case',
   DOCUMENT: 'documents_document',
+  HOME_CONTENT: 'website_page',
+  CRM_LEAD: 'crm_lead',
+  SERVICE_PUBLICATION: 'agd_service_publication',
+  CATALOG: 'product_template',
 } as const;
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName];

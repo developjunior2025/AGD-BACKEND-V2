@@ -39,6 +39,16 @@ ADMIN_EMAIL=admin@agd.local ADMIN_RIF=V-00000000-0 ADMIN_PASSWORD='ClaveSegura12
 
 Permisos nuevos: `ModelName.CONFIG`, `GOVERNANCE_MATRIX`, `CASE`, `DOCUMENT` — el grupo `admin` tiene CRUD completo + alcance `all` sobre los cuatro (migración `SeedFase2Config`). Los perfiles operativos (agente de aduanas, operador AGD, etc.) recibirán sus propios permisos de alcance `own`/`company` en las fases que los necesiten.
 
+## Fase 3 — HOME / portal público + catálogo de servicios
+
+- **`home`** (`src/modules/home/`): `Website` (fila única sembrada por migración), `WebsitePage` (+ext — `agd_public_notice`/`agd_faq` se resuelven aquí vía `pageType`), `WebsiteMenu` (+ext enlaces externos), `WebsiteVisitor`/`WebsiteTrack` (tracking anónimo por token de sesión), `LegalPolicy`/`LegalPolicyVersion` (versionado publicado/archivado igual que la matriz de gobernanza), `PortalVersion`, `CrmLead` (registro de interés público). Todo bajo `@Public()` para lectura; creación/publicación requiere `ModelName.HOME_CONTENT`.
+- **`catalog`** (`src/modules/catalog/`): el catálogo estilo Odoo — `ProductCategory`, `Uom`/`UomCategory`, `ProductAttribute`/`ProductAttributeValue`, `ProductTemplate` (+ext `agd_service`, el servicio del marketplace), `ProductProduct` (variante), `ProductPricelist`/`ProductPricelistItem`, `Rating` (reseñas polimórficas), `ResourceCalendar`/`ResourceCalendarAttendance` (+ext `agd_service_availability`). Lectura pública, escritura con `ModelName.CATALOG`.
+- **`services`** (`src/modules/services/`, controlador montado en el mismo prefijo `catalog/services` que `catalog`): `ServiceRequirement` (reutiliza `DocumentRequirement` de Fase 2), `ServiceSla` (reutiliza `SlaRule` de config), `ServiceCoverage`, `ServiceEvidenceType`, y el par `ServicePublication`/`ServicePublicationVersion` con el mismo patrón de versionado draft→published→archived. **Un servicio no es visible en el catálogo público hasta que tiene una versión de publicación efectivamente publicada** — `GET /catalog/services` y `GET /catalog/services/:id` filtran por `ServicePublicationStatus.PUBLISHED`, no por el `product_template` crudo.
+
+Nota de diseño: `services` depende de `catalog` (necesita `ProductTemplate`), así que el filtrado público por estado de publicación vive en `ServicesController`, no en `CatalogController` — evita una dependencia circular entre módulos. `CatalogController` conserva sus propios endpoints de servicio (creación, variantes, tarifas) sin el filtro de publicación, pensados para gestión administrativa del catálogo.
+
+Permisos nuevos: `ModelName.HOME_CONTENT`, `CRM_LEAD`, `CATALOG`, `SERVICE_PUBLICATION` — `admin` con CRUD completo + alcance `all` (migración `SeedFase3`).
+
 ## Requisitos
 
 - Node.js 20+

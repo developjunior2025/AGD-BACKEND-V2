@@ -6,7 +6,11 @@ import configuration from './config/configuration';
 import { envValidationSchema } from './config/env.validation';
 import { DatabaseModule } from './database/database.module';
 import { AuthModule } from './modules/auth/auth.module';
+import { CasesModule } from './modules/cases/cases.module';
+import { AgdConfigModule } from './modules/config/config.module';
+import { DocumentsModule } from './modules/documents/documents.module';
 import { EnablementModule } from './modules/enablement/enablement.module';
+import { GovernanceModule } from './modules/governance/governance.module';
 import { HealthModule } from './modules/health/health.module';
 import { IdentityModule } from './modules/identity/identity.module';
 import { UsersModule } from './modules/users/users.module';
@@ -25,6 +29,10 @@ import { UsersModule } from './modules/users/users.module';
     AuthModule,
     UsersModule,
     EnablementModule,
+    AgdConfigModule,
+    DocumentsModule,
+    GovernanceModule,
+    CasesModule,
   ],
   controllers: [AppController],
   providers: [AppService],

@@ -30,6 +30,15 @@ ADMIN_EMAIL=admin@agd.local ADMIN_RIF=V-00000000-0 ADMIN_PASSWORD='ClaveSegura12
 
 **Nota de alcance**: sin proveedor de correo/SMS real (backend standalone), la contraseña temporal generada al crear una cuenta (paso 6) se entrega en las notas del propio paso, visibles vía el seguimiento de la solicitud (`GET /enablement/requests/:id?rif=...`) o la vista admin. Una integración de notificaciones reemplazaría esto en una fase futura.
 
+## Fase 2 — Gobernanza, documentos maestros, configuración y expediente
+
+- **`config`** (`src/modules/config/`, clase `AgdConfigModule` para no chocar con `@nestjs/config`): catálogos de referencia — `Currency`/`CurrencyRate`, `Tax`, `MailTemplate`, `TariffRule`, `SlaRule`, `DeadlineRule`, `ExternalIntegrationReference` — y `SequenceService` (`ir_sequence`), generador atómico de códigos correlativos (`SELECT ... FOR UPDATE` en transacción) usado para el código de expediente.
+- **`documents`** (`src/modules/documents/`): `Document`/`Folder`/`Tag` (documents_document/folder/tag), `DocumentStatus` (revisión aprobado/rechazado), `DocumentRelation`, `DocumentRequirement` (catálogo de tipos exigibles) y `DocumentChecklist` (instancia de requisitos para un `resModel`/`resId` concreto, p. ej. un expediente). Subida de archivos a disco local (`uploads/documents/`, gitignored) igual que en `enablement`.
+- **`governance`** (`src/modules/governance/`): `ModelCatalog`/`ModelField` (catálogo plano, no introspección real), `GovernanceMatrix` + `GovernanceMatrixVersion` (versionado con publicación — solo una versión `published` por matriz, la anterior pasa a `archived`), `DocumentProfileMatrix` (qué requisitos documentales exige cada perfil), `ProcessRaciMatrix`/`RaciAssignment`, `SegregationRule` (pares de perfiles incompatibles, con `assertNoSegregationConflict()` reutilizable), `EscalationMatrix`, `GovernanceWorkflow`/`GovernanceWorkflowInstance` (aprobación pendiente/aprobada/rechazada sobre cualquier `resModel`/`resId`), `Activity` (mail_activity + `agd_governance_approval` vía `activityType='approval'`).
+- **`cases`** (`src/modules/cases/`): `Case` (agd_case, hub central), `CaseParty`, `CaseSemaphore`. `CasesService.createCase()` amarra las tres fases anteriores: genera el código vía `SequenceService`, agrega al dueño como `CaseParty`, crea el semáforo en verde, y **siembra el checklist automáticamente** consultando `GovernanceService.getRequirementCodesForGroup()` según el perfil del expediente. `closeCase()` **bloquea el cierre** si queda algún documento obligatorio del checklist sin cumplir — es la demostración end-to-end de que expediente, documentos y gobernanza quedan realmente conectados, no solo con tablas paralelas.
+
+Permisos nuevos: `ModelName.CONFIG`, `GOVERNANCE_MATRIX`, `CASE`, `DOCUMENT` — el grupo `admin` tiene CRUD completo + alcance `all` sobre los cuatro (migración `SeedFase2Config`). Los perfiles operativos (agente de aduanas, operador AGD, etc.) recibirán sus propios permisos de alcance `own`/`company` en las fases que los necesiten.
+
 ## Requisitos
 
 - Node.js 20+

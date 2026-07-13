@@ -6,6 +6,10 @@
 export const ModelName = {
   ENABLEMENT_REQUEST: 'agd_user_enablement_request',
   USER: 'res_users',
+  CONFIG: 'agd_config',
+  GOVERNANCE_MATRIX: 'agd_governance_matrix',
+  CASE: 'agd_case',
+  DOCUMENT: 'documents_document',
 } as const;
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName];

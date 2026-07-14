@@ -24,6 +24,10 @@ export const ModelName = {
   ORDER: 'sale_order',
   CART: 'agd_service_cart',
   HELPDESK: 'helpdesk_ticket',
+  CUSTOMS_LICENSE: 'agd_customs_license',
+  CUSTOMS_DECLARATION: 'agd_customs_declaration',
+  /** Operación de depósito/almacén (recepción, picking, custodia, pesaje, consolidación, discrepancias). */
+  WMS: 'agd_wms_operation',
 } as const;
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName];
